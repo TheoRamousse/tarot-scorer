@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ItemType>GenericProject</ItemType>
+    <ProjectGuid>{6DC70453-1138-44B2-8515-E0887096DAD7}</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Default|AnyCPU' ">
+    <OutputPath>.\</OutputPath>
+    <CustomCommands>
+      <CustomCommands>
+        <Command>
+          <type>Build</type>
+          <command>doxygen Doxyfile</command>
+          <workingdir>${ProjectDir}/../../Documentation/doxygen</workingdir>
+        </Command>
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\Documentation\doxygen\footer.html">
+      <Link>doxygen\footer.html</Link>
+    </None>
+    <None Include="..\..\Documentation\doxygen\Doxyfile">
+      <Link>doxygen\Doxyfile</Link>
+    </None>
+    <None Include="..\..\Documentation\doc_images\avatarTarotScoreur.png">
+      <Link>doc_images\avatarTarotScoreur.png</Link>
+    </None>
+    <None Include="..\..\Documentation\doc_images\bandeau.png">
+      <Link>doc_images\bandeau.png</Link>
+    </None>
+    <None Include="..\..\Documentation\doc_images\CodeFirst.png">
+      <Link>doc_images\CodeFirst.png</Link>
+    </None>
+    <None Include="..\..\Documentation\doc_images\clubinfo.png">
+      <Link>doc_images\clubinfo.png</Link>
+    </None>
+  </ItemGroup>
+<Target Name="Clean">
+        <RemoveDir Directories="$(ProjectDir)..\..\Documentation\html\" />
+    </Target>
+    
+</Project>
