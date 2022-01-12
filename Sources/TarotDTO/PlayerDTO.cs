@@ -16,5 +16,6 @@ namespace TarotDTO
 
         public string NickName { get; set; }
 
+
     }
 }

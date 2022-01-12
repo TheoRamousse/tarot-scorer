@@ -17,5 +17,7 @@ namespace TarotDTO
         public bool? Excuse { get; private set; }
 
         public bool? TwentyOne { get; private set; }
+
+        public List<PlayerAndBiddingDTO> Players { get; set; } = new List<PlayerAndBiddingDTO>();
     }
 }
