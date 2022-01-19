@@ -1,3 +1,5 @@
+using GraphQLApi.Controllers;
+using GraphQLApi.Queries;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +32,9 @@ namespace GraphQLApi
         {
             services.AddSingleton<IDataManager, Stub>();
             services.AddAutoMapper(typeof(Startup));
+
+            //services.AddGraphQLServer().AddQueryType<GameQuery>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -56,6 +61,7 @@ namespace GraphQLApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapGraphQL();
             });
         }
     }
