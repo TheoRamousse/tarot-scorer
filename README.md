@@ -18,7 +18,52 @@ Vous pouvez créer de nouveaux joueurs ou utiliser les joueurs créés précéde
 
 ## Requirements
 
+Il faut **visualstudio(minimum VS2019*)* mais la version peut être plus récente
+Il faut **git**
+
 ## Installation
+
+Il faut **visualstudio** au minimum VS2019 : https://visualstudio.microsoft.com/fr/
+
+Il vous faut **git**, pour récuperer le projet:
+
+-créer un dossier personnel faites clic droit dessus puis cliquez sur "git bash here"
+![Image text](/Documentation/doc_images/git.png "git bash here") 
+
+Puis écrire la comande suivante:
+```
+git clone https://gitlab.iut-clermont.uca.fr/mabouvard2/tarot-scorer.git
+```
+
+Le projet est maintenant das le dossier que vous venez de créer.
+
+
+
+
+Voici les **packages nugets** installés et leur version pour chaque solution du projet :
+
+•	**Model** : *NETStandard.Library(2.0.3)*
+***
+•	**RestApi** : *Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer(5.0.0), NLog(4.7.13), NLog.Web.AspNetCore(4.14.0), Swashbuckle.AspNetCore(5.6.3)*
+***
+•	**StubLib** : *NETStandard.Library(2.0.3)*
+***
+•	**TarotDB** : *Microsoft.EntityFrameworkCore(3.1.22), Microsoft.EntityFrameworkCore.Sqlite(3.1.22), NETStandard.Library(2.0.3)*
+***
+•	**TarotDB2Model**: *NETStandard.Library(2.0.3)*
+***
+•	**Tests\DataManager_UT** : *coverlet.collector(3.0.2), xunit(2.4.1), xunit.runner.visualstudio(2.4.3), Microsoft.EntityFrameworkCore.Design(3.1.22), Microsoft.NET.Test.Sdk(16.9.4)*
+***
+•	**Tests\ManagerDBTests** : *Microsoft.EntityFrameworkCore.Design(3.1.22)*
+***
+•	**Tests\ManagerStubTests** :
+***
+•	**Tests\Model_UT** : *coverlet.collector(3.0.2), xunit(2.4.1), xunit.runner.visualstudio(2.4.3), Microsoft.NET.Test.Sdk(16.9.4)*
+***
+•	**Tests\TarotDB_Tests** : *Microsoft.EntityFrameworkCore.Design(3.1.22)*
+***
+•	**Tests\TarotDB_UT** : *coverlet.collector(3.0.2), xunit(2.4.1), xunit.runner.visualstudio(2.4.3), Microsoft.EntityFrameworkCore.Design(3.1.22), Microsoft.NET.Test.Sdk(16.9.4)*
+***
 
 ## Sample app
 
@@ -27,6 +72,12 @@ Vous pouvez créer de nouveaux joueurs ou utiliser les joueurs créés précéde
 # Usage
 
 # Running the tests
+Dans l'état actuel de notre projet, nous avons seulement des classes de test et une petite application console qui est simplement là pour montrer que notre programme compile. Pour pouvoir lancer les tests, il faut simplement ouvrir le projet dans VS2019, il faut ensuite faire un clique droit (soit sur la solution générale soit sur un test_UT) et séléctionner "Exécuter les tests". 
+![Image text](/Documentation/doc_images/tests/generation.png "Exécution des tests")  
+Lorsque l'explorateur de tests est ouvert vous pouvez alors séléctionner vous même le test à éxécuter.
+Si le test retourne le résultat attendu alors il affiche un cercle vert sinon il affiche un cercle rouge.
+![Image text](/Documentation/doc_images/tests/selection.png "Selection de tests")  
+
 
 # Roadmap
 
