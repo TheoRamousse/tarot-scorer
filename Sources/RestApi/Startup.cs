@@ -8,17 +8,30 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using TarotDB;
 
 namespace RestApi
 {
     public class Startup
     {
+        static string XmlCommentsFilePath
+        {
+            get
+            {
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var fileName = typeof(Startup).GetTypeInfo().Assembly.GetName().Name + ".xml";
+                return Path.Combine(basePath, fileName);
+            }
+        }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -34,20 +47,34 @@ namespace RestApi
             services.AddApiVersioning(
             options =>
             {
-                    // reporting api versions will return the headers "api-supported-versions" and "api-deprecated-versions"
-                    options.ReportApiVersions = true;
+                // reporting api versions will return the headers "api-supported-versions" and "api-deprecated-versions"
+                options.ReportApiVersions = true;
+                options.AssumeDefaultVersionWhenUnspecified = true;
             });
             services.AddVersionedApiExplorer(
                 options =>
                 {
+                    options.DefaultApiVersion = new ApiVersion(1, 0);
                     options.GroupNameFormat = "'v'VVV";
                     options.SubstituteApiVersionInUrl = true;
                 }
            );
+
+            services.AddSwaggerGen(
+            options =>
+            {
+                // add a custom operation filter which sets default values
+                options.OperationFilter<SwaggerDefaultValues>();
+
+                // integrate xml comments
+                options.IncludeXmlComments(XmlCommentsFilePath);
+            });
+
+            //services.AddDbContext<TarotContext>(options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection")); A AJOUTER LAST 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider  provider)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
         {
             if (env.IsDevelopment())
             {
@@ -64,13 +91,9 @@ namespace RestApi
                 });
             }
 
-
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
