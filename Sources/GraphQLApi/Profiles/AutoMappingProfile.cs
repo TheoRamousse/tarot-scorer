@@ -2,6 +2,8 @@
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using TarotDB;
 using TarotDTO;
 
 namespace GraphQLApi.Profiles
@@ -11,7 +13,7 @@ namespace GraphQLApi.Profiles
         public AutoMappingProfile()
         {
             CreateMap<Game, GameDTO>(); // means you want to map from User to UserDTO
-            CreateMap<KeyValuePair<Player, Bidding>, PlayerAndBiddingDTO>().ConstructUsing(v => new PlayerAndBiddingDTO()
+            CreateMap<KeyValuePair<Player, Model.Bidding>, PlayerAndBiddingDTO>().ConstructUsing(v => new PlayerAndBiddingDTO()
             {
                 Player = new PlayerDTO()
                 {
