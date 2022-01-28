@@ -69,7 +69,21 @@ Voici les **packages nugets** installés et leur version pour chaque solution du
 
 # What we have now?
 
+Actuellement, nous avons réalisé les tâches suivantes pour la réalisation du projet : 
+
+- API Rest
+
+- API Gateway
+
+- API GraphQL:
+
+Voici des exemples de requetes avec l'API GraphQL
+
+
 # Usage
+
+Pour l'API REST 
+
 
 # Running the tests
 Dans l'état actuel de notre projet, nous avons seulement des classes de test et une petite application console qui est simplement là pour montrer que notre programme compile. Pour pouvoir lancer les tests, il faut simplement ouvrir le projet dans VS2019, il faut ensuite faire un clique droit (soit sur la solution générale soit sur un test_UT) et séléctionner "Exécuter les tests". 
@@ -81,12 +95,29 @@ Si le test retourne le résultat attendu alors il affiche un cercle vert sinon i
 
 # Roadmap
 
+# Why we choose GraphQL API?
+
+Lors des différentes requêtes que nos utilisateur vont effectuer, nous n'avons pas la certitude des données que ces derniers veulent récupérer.
+En effet **GraphQL** est une **API** permettant de pallier ce problème grace aux multiples avantages qu'il nous offre :
+
+- **On obtient toujours le résultat qu’on attend**, autrement dit il aide à prévoir les données reçues ainsi que la structure de ces dernières. Cela simplifie le traitement des données que le serveur renvoie et permet de les faire consommer par l’application à laquelle on les envoies.
+
+- **Le serveur sait exactement quelles données on veut voir**, en ayant une structure claire des objets et des champs possibles qui peuvent être interrogés, grace à cela le serveur saura toujours ce qu’il est censé renvoyer. S’il y a une erreur dans la requête, elle ne sera pas validée et l’utilisateur sera invité à envoyer un message d’erreur descriptif qui permettra un dépannage rapide.
+
+
+Comme spécifié ci-dessus **GraphQL** nous permet de faire des **requêtes très spécialisées** (seulement ce que l'utilisateur veut savoir), ce qui engendre un **volume de transfert de données plus faible** signifie également une **connexion plus rapide** et de **meilleurs temps de chargement** pour les utilisateurs.
+C'est bénéfique pour l'utilisateur et pour l'éfficacité de notre application d'avoir de meilleures performances.
+ 
+
 # Known issues and limitations
 
 # Built with
 
 # Authors
-Marc Chevaldonné - #0 World Dev
+Maël Bouvard
+Théo Ramousse 
+Mathieu Albiero
+Raphaël Hacques
 
 # Acknowledgments
 - Nicolas Raymond
