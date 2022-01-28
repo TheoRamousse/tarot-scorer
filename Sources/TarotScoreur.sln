@@ -27,9 +27,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TarotDB_UT", "Tests\TarotDB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataManager_UT", "Tests\DataManager_UT\DataManager_UT.csproj", "{B05210A4-BFBA-4DD2-B123-3A1EB3BB08FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TarotDTO", "TarotDTO\TarotDTO.csproj", "{A28996B9-FD21-4BCD-A7E1-8BC18F39ED2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TarotDTO", "TarotDTO\TarotDTO.csproj", "{A28996B9-FD21-4BCD-A7E1-8BC18F39ED2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQLApi", "GraphQLApi\GraphQLApi.csproj", "{53FDBB33-BDB9-455F-8D7D-3F5005699FB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphQLApi", "GraphQLApi\GraphQLApi.csproj", "{53FDBB33-BDB9-455F-8D7D-3F5005699FB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIGateway", "APIGateway\APIGateway.csproj", "{1CDAACD7-6C69-4A9C-8E13-71F16DCEF40A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -116,6 +118,12 @@ Global
 		{53FDBB33-BDB9-455F-8D7D-3F5005699FB1}.Default|Any CPU.Build.0 = Debug|Any CPU
 		{53FDBB33-BDB9-455F-8D7D-3F5005699FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53FDBB33-BDB9-455F-8D7D-3F5005699FB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CDAACD7-6C69-4A9C-8E13-71F16DCEF40A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CDAACD7-6C69-4A9C-8E13-71F16DCEF40A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CDAACD7-6C69-4A9C-8E13-71F16DCEF40A}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CDAACD7-6C69-4A9C-8E13-71F16DCEF40A}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{1CDAACD7-6C69-4A9C-8E13-71F16DCEF40A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CDAACD7-6C69-4A9C-8E13-71F16DCEF40A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
