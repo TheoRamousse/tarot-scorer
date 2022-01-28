@@ -29,9 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataManager_UT", "Tests\Dat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestApi", "RestApi\RestApi.csproj", "{6109BE40-74B8-4503-90B3-7D904C11871A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelRestApiClient", "ModelRestApiClient\ModelRestApiClient.csproj", "{00BF046A-01E8-4846-A68E-9FE351CE37F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelRestApiClient", "ModelRestApiClient\ModelRestApiClient.csproj", "{00BF046A-01E8-4846-A68E-9FE351CE37F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{FB8555EF-A943-480C-A215-3FF66D117570}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{FB8555EF-A943-480C-A215-3FF66D117570}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGtw", "ApiGtw\ApiGtw.csproj", "{41F05AA6-B95D-4226-B3D7-5F8D754FEDD1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -124,6 +126,12 @@ Global
 		{FB8555EF-A943-480C-A215-3FF66D117570}.Default|Any CPU.Build.0 = Debug|Any CPU
 		{FB8555EF-A943-480C-A215-3FF66D117570}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB8555EF-A943-480C-A215-3FF66D117570}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41F05AA6-B95D-4226-B3D7-5F8D754FEDD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41F05AA6-B95D-4226-B3D7-5F8D754FEDD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41F05AA6-B95D-4226-B3D7-5F8D754FEDD1}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{41F05AA6-B95D-4226-B3D7-5F8D754FEDD1}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{41F05AA6-B95D-4226-B3D7-5F8D754FEDD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41F05AA6-B95D-4226-B3D7-5F8D754FEDD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

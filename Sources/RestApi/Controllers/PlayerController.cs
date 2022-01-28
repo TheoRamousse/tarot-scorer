@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NLog;
 using System.Collections.Generic;
-using TarotDB.
+using System.Threading.Tasks;
 using TarotDB2Model;
 
 namespace RestApi.Controllers
@@ -20,9 +20,10 @@ namespace RestApi.Controllers
 
 
         [HttpGet]
-        public IActionResult GetAll()
+        public Task<IActionResult> GetAll()
         {
-            return Ok(manager.);
+            //return Ok(manager.);
+            return null; // A MODIFIER BIEN ENTENDU
         }
     }
 }
