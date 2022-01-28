@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.810.13
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -29,6 +29,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestApi", "RestApi\RestApi.csproj", "{6109BE40-74B8-4503-90B3-7D904C11871A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelRestApiClient", "ModelRestApiClient\ModelRestApiClient.csproj", "{00BF046A-01E8-4846-A68E-9FE351CE37F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIGateway", "APIGateway\APIGateway.csproj", "{1CDAACD7-6C69-4A9C-8E13-71F16DCEF40A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{FB8555EF-A943-480C-A215-3FF66D117570}"
 EndProject
@@ -147,6 +149,12 @@ Global
 		{C2E2B042-6090-4ACB-83E8-CA961C42387B}.Default|Any CPU.Build.0 = Debug|Any CPU
 		{C2E2B042-6090-4ACB-83E8-CA961C42387B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2E2B042-6090-4ACB-83E8-CA961C42387B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CDAACD7-6C69-4A9C-8E13-71F16DCEF40A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CDAACD7-6C69-4A9C-8E13-71F16DCEF40A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CDAACD7-6C69-4A9C-8E13-71F16DCEF40A}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CDAACD7-6C69-4A9C-8E13-71F16DCEF40A}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{1CDAACD7-6C69-4A9C-8E13-71F16DCEF40A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CDAACD7-6C69-4A9C-8E13-71F16DCEF40A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
