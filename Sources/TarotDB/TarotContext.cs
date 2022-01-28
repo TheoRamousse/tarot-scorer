@@ -26,7 +26,7 @@ namespace TarotDB
         {
             if (!options.IsConfigured)
             {
-                options.UseSqlite(@"Data Source=Tarot.db");
+                options.UseSqlite(@"Data Source=Tarot.db") ;
             }
         }
 

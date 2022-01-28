@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace TarotDB2Model
 {
-    interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         IGenericRepository<TEntity> Repository<TEntity>() where TEntity : class;
 

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TarotDB2Model
 {
-    class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         private readonly DbContext _dbContext;
         private readonly DbSet<TEntity> _dbSet;

@@ -18,6 +18,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using TarotDB;
+using TarotDB2Model;
 
 namespace RestApi
 {
@@ -70,7 +71,16 @@ namespace RestApi
                 options.IncludeXmlComments(XmlCommentsFilePath);
             });
 
-            //services.AddDbContext<TarotContext>(options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection")); A AJOUTER LAST 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IGenericRepository<GameEntity>, GenericRepository<GameEntity>>();
+            services.AddScoped<IGenericRepository<PlayerBiddingEntity>, GenericRepository<PlayerBiddingEntity>>();
+            services.AddScoped<IGenericRepository<PlayerEntity>, GenericRepository<PlayerEntity>>();
+            services.AddScoped<IGenericRepository<PlayerSessionEntity>, GenericRepository<PlayerSessionEntity>>();
+            services.AddScoped<IGenericRepository<SessionEntity>, GenericRepository<SessionEntity>>();
+            services.AddDbContext<TarotContext>();
+            //services.AddAutoMapper(typeof(Startup));
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
