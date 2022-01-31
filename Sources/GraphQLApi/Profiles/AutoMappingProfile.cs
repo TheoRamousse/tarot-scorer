@@ -12,7 +12,7 @@ namespace GraphQLApi.Profiles
     {
         public AutoMappingProfile()
         {
-            CreateMap<Game, GameDTO>(); // means you want to map from User to UserDTO
+            CreateMap<Game, GameDTO>(); // means you want to map from Game to GameDTO
             CreateMap<KeyValuePair<Player, Model.Bidding>, PlayerAndBiddingDTO>().ConstructUsing(v => new PlayerAndBiddingDTO()
             {
                 Player = new PlayerDTO()
