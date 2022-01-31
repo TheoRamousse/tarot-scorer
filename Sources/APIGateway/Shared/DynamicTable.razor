@@ -1,0 +1,117 @@
+﻿@using System.Linq
+@using APIGateway.Model
+
+<!--
+    <DataGrid TItem="Data"
+              Data="@Elements"
+              ReadData="@OnReadData"
+              TotalItems="5"
+              PageSize="10"
+              ShowPager
+              Responsive>
+        @if (Elements.Count != 0)
+        {
+            var count = 0;
+            foreach (var element in Elements)
+            {
+                var i = 0;
+                foreach (var property in Elements[count])
+                {
+                    <DataGridColumn TItem="Data" Displayable="!(property.Value is Boolean)" Field="@Data.Values.ToArray[i]" Caption="Data.Keys[i]" />
+                    <DataGridColumn TItem="Data" Displayable="property.Value is Boolean" Field="@Data.Values[i]" Caption="Data.Keys[i]">
+                        <DisplayTemplate>
+                            <input type="checkbox" id="scales" name="scales" checked="@property.Value" disabled>
+                        </DisplayTemplate>
+                    </DataGridColumn>
+                    i += 1;
+                }
+
+                <DataGridColumn TItem="Data" Field="element['Id']" Caption="">
+                    <DisplayTemplate>
+                        <a href="Edit/@(element["Id"])" class="btn btn-primary"><i class="fa fa-edit"></i> Editer</a>
+
+                    </DisplayTemplate>
+                </DataGridColumn>
+                <DataGridColumn TItem="Data" Field="element['Id']" Caption="">
+                    <DisplayTemplate>
+                        <a href="Edit/@(element["Id"])" class="btn btn-primary"><i class="fa fa-edit"></i> Editer</a>
+
+                    </DisplayTemplate>
+                </DataGridColumn>
+                <DataGridColumn TItem="Data" Field="element['Id']" Caption="">
+                    <DisplayTemplate>
+                        <a href="Edit/@(element["Id"])" class="btn btn-primary"><i class="fa fa-edit"></i> Editer</a>
+
+                    </DisplayTemplate>
+                </DataGridColumn>
+
+
+                count++;
+            }
+        }
+
+    </DataGrid>
+-->
+
+
+
+<table>
+    <thead>
+        <tr>
+            @foreach (var property in Elements[0])
+            {
+            <th>
+                @property.Key
+            </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @{var count = 0;}
+        @foreach (var element in Elements)
+        {
+            var i = 0;
+        <tr>
+            @foreach (var property in element.ToArray())
+            {
+                @if (!(property.Value is Boolean))
+            {
+            <td>
+                @property.Value
+            </td>
+        }
+    else
+        {
+            <td>
+                    <input type="checkbox" checked="@property.Value" disabled="true"/>
+            </td>
+        }
+            }
+            @if (IsViewable)
+            {
+                <td>
+                    <button>
+                        Voir
+                    </button>
+                </td>
+            }
+            @if (IsEditable)
+            {
+                <td>
+                    <button>
+                        Editer
+                    </button>
+                </td>
+            }
+            @if (IsDeletable)
+            {
+                <td>
+                    <button>
+                        Supprimer
+                    </button>
+                </td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
