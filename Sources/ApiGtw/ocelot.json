@@ -1,0 +1,22 @@
+﻿{
+  "Routes": [
+    {
+      // from Client to DATABASE
+      // http://localhost:7000/catalog-service/catalog redirected to http://localhost:7001/catalog-service/catalog
+      //exemple "DownstreamPathTemplate": "/api/catalog"
+      "DownstreamPathTemplate": "/api/MODEL",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7001
+        }
+      ],
+      //exemple "UpstreamPathTemplate": "/catalog-service/catalog",
+      "UpstreamPathTemplate": "/MODEL-service/MODEL"
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:7000"
+  }
+}

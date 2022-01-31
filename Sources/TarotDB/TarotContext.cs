@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 [assembly:InternalsVisibleTo("DataManager_UT")]
 namespace TarotDB
 {
-    class TarotContext : DbContext
+    public class TarotContext : DbContext
     {
         public DbSet<PlayerEntity> Players { get; set; }
 
@@ -26,7 +26,7 @@ namespace TarotDB
         {
             if (!options.IsConfigured)
             {
-                options.UseSqlite(@"Data Source=Tarot.db");
+                options.UseSqlite(@"Data Source=Tarot.db") ;
             }
         }
 
