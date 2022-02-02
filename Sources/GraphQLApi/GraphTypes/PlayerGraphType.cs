@@ -1,7 +1,7 @@
 ﻿using GraphQL.Types;
 using TarotDTO;
 
-namespace GraphQLApi.Queries
+namespace GraphQLApi.GraphTypes
 {
     public class PlayerGraphType : ObjectGraphType<PlayerDTO>
     {
