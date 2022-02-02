@@ -12,7 +12,7 @@ namespace TarotDTO
         public long Id { get;  set; }
 =======
         public long Id { get; private set; } = 0;
->>>>>>> f54fd5aada460929163fce34943fcf86b6c91ec1
+>>>>>>> 31dc71c (Tried to fix add)
 
         public DateTime Date { get;  set; }
 
