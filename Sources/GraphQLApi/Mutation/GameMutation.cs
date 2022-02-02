@@ -15,7 +15,9 @@ namespace GraphQLApi.Mutation
         [GraphQLMetadata("addGame")]
         public async Task<GameDTOPayload> AddGameAsync(GameDTO gameToAdd, [Service] IDataManager context, [Service] IMapper mapper, [Service] ILogger<GameMutation> logger)
         {
-            var result = await context.AddGame(mapper.Map<Game>(gameToAdd));
+            var game = mapper.Map<Game>(gameToAdd);
+            game.Rules = new FakeTarotRuleForApi();
+            var result = await context.AddGame(game);
 
             return null;
         }

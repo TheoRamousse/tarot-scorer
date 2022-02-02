@@ -13,6 +13,7 @@ namespace Model
         static RulesFactory()
         {
             factory.Add(new FrenchTarotRules().Name, () => new FrenchTarotRules());
+            factory.Add(new FakeTarotRuleForApi().Name, () => new FakeTarotRuleForApi());
         }
 
         /// <summary>
