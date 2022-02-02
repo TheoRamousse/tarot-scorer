@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TarotDTO;
 
-namespace GraphQLApi.Queries
+namespace GraphQLApi.GraphTypes
 {
     public class PlayerAndBiddingGraphType : ObjectGraphType<PlayerAndBiddingDTO>
     {

@@ -2,7 +2,7 @@
 using Model;
 using TarotDTO;
 
-namespace GraphQLApi.Queries
+namespace GraphQLApi.GraphTypes
 {
     public class GameGraphType : ObjectGraphType<GameDTO>
     {
