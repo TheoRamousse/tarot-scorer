@@ -16,18 +16,35 @@ namespace TarotDB2Model
 
             if(result == null)
             {
-                result = new GameEntity
+                if (model.Rules != null)
                 {
-                    Id = model.Id,
-                    DateTime = model.Date,
-                    Chelem = model.Chelem.ToEntity(),
-                    Poignée = model.Poignée.ToEntity(),
-                    Excuse = model.Excuse,
-                    Petit = model.PetitResult.ToEntity(),
-                    TakerPoints = model.TakerPoints,
-                    TwentyOne = model.TwentyOne,
-                    Rules = model.Rules.Name
-                };
+                    result = new GameEntity
+                    {
+                        Id = model.Id,
+                        DateTime = model.Date,
+                        Chelem = model.Chelem.ToEntity(),
+                        Poignée = model.Poignée.ToEntity(),
+                        Excuse = model.Excuse,
+                        Petit = model.PetitResult.ToEntity(),
+                        TakerPoints = model.TakerPoints,
+                        TwentyOne = model.TwentyOne,
+                        Rules = model.Rules.Name
+                    };
+                }
+                else
+                {
+                    result = new GameEntity
+                    {
+                        Id = model.Id,
+                        DateTime = model.Date,
+                        Chelem = model.Chelem.ToEntity(),
+                        Poignée = model.Poignée.ToEntity(),
+                        Excuse = model.Excuse,
+                        Petit = model.PetitResult.ToEntity(),
+                        TakerPoints = model.TakerPoints,
+                        TwentyOne = model.TwentyOne
+                    };
+                }
                 foreach(var b in model.Players)
                 {
                     result.Biddings.Add(new PlayerBiddingEntity
