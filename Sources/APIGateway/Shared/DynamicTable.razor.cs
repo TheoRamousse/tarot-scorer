@@ -11,7 +11,7 @@ namespace APIGateway.Shared
     public partial class DynamicTable
     {
         [Parameter]
-        public string NumberElementsPerPage { get; set; }
+        public int NumberElementsPerPage { get; set; }
         [Parameter]
         public bool IsEditable { get; set; }
         [Parameter]
@@ -22,10 +22,53 @@ namespace APIGateway.Shared
         [Parameter]
         public Func<int, int, Task<List<Data>>> FetchDataWithNumberOfElementsAsync { get; set; }
 
+        [Parameter]
+        public Func<Task<int>> GetTotalNumberOfData { get; set; }
+
+
+
+        public decimal NumberOfData { get; set; }
+        public int NumberOfPages { get; set; }
+
+        public int CurrentPage { get; set; } = 1;
+
         protected override async Task OnInitializedAsync()
         {
-            var response = await FetchDataWithNumberOfElementsAsync(2, 3);
-            Elements = new List<Data>(response);       
+            NumberOfData = await GetTotalNumberOfData();
+            NumberOfPages = Decimal.ToInt32(Math.Ceiling(NumberOfData / NumberElementsPerPage))-1;
+
+            await setData();
+                   
+        }
+
+        private async Task setData()
+        {
+            var response = await FetchDataWithNumberOfElementsAsync(NumberElementsPerPage, CurrentPage);
+            Elements = new List<Data>(response);
+        }
+
+        public async Task ChangeCurrentPage(int numPage)
+        {
+            CurrentPage = numPage;
+            await setData();
+        }
+
+        public async Task DecrementCurrentPage()
+        {
+            if(CurrentPage > 1)
+            {
+                CurrentPage--;
+                await setData();
+            }
+        }
+
+        public async Task IncrementCurrentPage()
+        {
+            if (CurrentPage < NumberOfPages)
+            {
+                CurrentPage++;
+                await setData();
+            }
         }
 
     }
