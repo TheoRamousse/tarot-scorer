@@ -1,117 +1,125 @@
 ﻿@using System.Linq
 @using APIGateway.Model
 
-<!--
-    <DataGrid TItem="Data"
-              Data="@Elements"
-              ReadData="@OnReadData"
-              TotalItems="5"
-              PageSize="10"
-              ShowPager
-              Responsive>
-        @if (Elements.Count != 0)
-        {
-            var count = 0;
-            foreach (var element in Elements)
+
+@if (Elements.Count != 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                @foreach (var property in Elements[0])
+                {
+                    <th>
+                        @property.Key
+                    </th>
+                }
+                @if (IsEditable || IsViewable || IsDeletable)
+                {
+                    <th></th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var count = 0;
+            }
+            @foreach (var element in Elements)
             {
                 var i = 0;
-                foreach (var property in Elements[count])
-                {
-                    <DataGridColumn TItem="Data" Displayable="!(property.Value is Boolean)" Field="@Data.Values.ToArray[i]" Caption="Data.Keys[i]" />
-                    <DataGridColumn TItem="Data" Displayable="property.Value is Boolean" Field="@Data.Values[i]" Caption="Data.Keys[i]">
-                        <DisplayTemplate>
-                            <input type="checkbox" id="scales" name="scales" checked="@property.Value" disabled>
-                        </DisplayTemplate>
-                    </DataGridColumn>
-                    i += 1;
+                <tr>
+                    @foreach (var property in element.ToArray())
+                    {
+                        @if (!(property.Value is Boolean))
+                        {
+                            <td>
+                                @property.Value
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <input type="checkbox" checked="@property.Value" disabled="true"/>
+                            </td>
+                        }
+
+                    }
+                    @if (IsEditable || IsViewable || IsDeletable)
+                    {
+                        <td>
+                            <div style="float:right;">
+                                @if (IsViewable)
+                                {
+                                    <button type="button" class="btn btn-info" style="margin-left: 3rem;">
+                                        Voir
+                                    </button>
+                                }
+                                @if (IsEditable)
+                                {
+                                    <button type="button" class="btn btn-warning" style="margin-left: 3rem;">
+                                        Editer
+                                    </button>
+                                }
+                                @if (IsDeletable)
+                                {
+                                    <button style="margin-left: 3rem;" type="button" class="btn btn-danger">
+                                        Supprimer
+                                    </button>
+                                }
+                            </div>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    }
+
+<nav class="justify-content-center" aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item"><a class="page-link" @onclick="@((ui) => DecrementCurrentPage())">Précédent</a></li>
+        @if(CurrentPage == 1)
+        {
+            for(int i = 1; i <=3 || i <= CurrentPage; i++)
+            {
+                 var tempint = i;
+                 if(i == CurrentPage){
+                    <li class="page-item"><a class="page-link font-weight-bold"  @onclick="@((ui) => ChangeCurrentPage(@tempint))" >@i</a></li>
                 }
-
-                <DataGridColumn TItem="Data" Field="element['Id']" Caption="">
-                    <DisplayTemplate>
-                        <a href="Edit/@(element["Id"])" class="btn btn-primary"><i class="fa fa-edit"></i> Editer</a>
-
-                    </DisplayTemplate>
-                </DataGridColumn>
-                <DataGridColumn TItem="Data" Field="element['Id']" Caption="">
-                    <DisplayTemplate>
-                        <a href="Edit/@(element["Id"])" class="btn btn-primary"><i class="fa fa-edit"></i> Editer</a>
-
-                    </DisplayTemplate>
-                </DataGridColumn>
-                <DataGridColumn TItem="Data" Field="element['Id']" Caption="">
-                    <DisplayTemplate>
-                        <a href="Edit/@(element["Id"])" class="btn btn-primary"><i class="fa fa-edit"></i> Editer</a>
-
-                    </DisplayTemplate>
-                </DataGridColumn>
-
-
-                count++;
+                else
+                {
+                    <li class="page-item"><a class="page-link" @onclick="@((ui) => ChangeCurrentPage(@tempint))" >@i</a></li>
+                }
             }
         }
-
-    </DataGrid>
--->
-
-
-
-<table>
-    <thead>
-        <tr>
-            @foreach (var property in Elements[0])
-            {
-            <th>
-                @property.Key
-            </th>
-            }
-        </tr>
-    </thead>
-    <tbody>
-        @{var count = 0;}
-        @foreach (var element in Elements)
+        else if(CurrentPage == NumberOfPages-1 || CurrentPage == NumberOfPages)
         {
-            var i = 0;
-        <tr>
-            @foreach (var property in element.ToArray())
+            for(int i = NumberOfPages-2; i <=NumberOfPages; i++)
             {
-                @if (!(property.Value is Boolean))
-            {
-            <td>
-                @property.Value
-            </td>
+                var tempint = i;
+                if(i == CurrentPage){
+                    <li class="page-item"><a class="page-link font-weight-bold" @onclick="@((ui) => ChangeCurrentPage(@tempint))" >@i</a></li>
+                }
+                else
+                {
+                    <li class="page-item"><a class="page-link" @onclick="@((ui) => ChangeCurrentPage(@tempint))" >@i</a></li>
+                }
+            }
         }
-    else
+        else
         {
-            <td>
-                    <input type="checkbox" checked="@property.Value" disabled="true"/>
-            </td>
+            for(int i = CurrentPage-1; i <=CurrentPage+1 && i <=NumberOfPages; i++)
+            {
+                var tempint = i;
+                if(i == CurrentPage){
+                    <li class="page-item"><a class="page-link font-weight-bold" @onclick="@((ui) => ChangeCurrentPage(@tempint))" >@i</a></li>
+                }
+                else
+                {
+                    <li class="page-item"><a class="page-link" @onclick="@((ui) => ChangeCurrentPage(@tempint))" >@i</a></li>
+                }
+            }
         }
-            }
-            @if (IsViewable)
-            {
-                <td>
-                    <button>
-                        Voir
-                    </button>
-                </td>
-            }
-            @if (IsEditable)
-            {
-                <td>
-                    <button>
-                        Editer
-                    </button>
-                </td>
-            }
-            @if (IsDeletable)
-            {
-                <td>
-                    <button>
-                        Supprimer
-                    </button>
-                </td>
-            }
-        </tr>
-        }
-    </tbody>
-</table>
+
+    <li class="page-item"><a class="page-link" @onclick="@((ui) => IncrementCurrentPage())">Suivant</a></li>
+  </ul>
+</nav>
