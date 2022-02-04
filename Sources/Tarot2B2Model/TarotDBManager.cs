@@ -359,7 +359,7 @@ namespace TarotDB2Model
             return true;
         }
 
-        public async Task<bool> UpdateGame(long id, Game game)
+        public async Task<Game> UpdateGame(long id, Game game)
         {
             GameEntity ge = await UnitOfWork.Repository<GameEntity>().Set.Include(g => g.Biddings)
                                                                                .ThenInclude(b => b.Player)
@@ -395,10 +395,10 @@ namespace TarotDB2Model
             if (await UnitOfWork.Repository<GameEntity>().Update(ge) == null)
             {
                 await UnitOfWork.RejectChangesAsync();
-                return false;
+                return null;
             }
             await UnitOfWork.SaveChangesAsync();
-            return true;
+            return result.ToModel();
         }
 
     }
