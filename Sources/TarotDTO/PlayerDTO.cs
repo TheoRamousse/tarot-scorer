@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TarotDTO
 {
-    public class PlayerDTO
+    public class PlayerDTO : IDTO
     {
         public long Id { get; set; }
 
@@ -15,7 +15,6 @@ namespace TarotDTO
         public string LastName { get; set; }
 
         public string NickName { get; set; }
-
 
     }
 }
