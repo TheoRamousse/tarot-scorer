@@ -17,6 +17,10 @@ namespace APIGateway.Shared
         [Parameter]
         public bool IsViewable { get; set; }
         [Parameter]
+        public String OnView { get; set; }
+        [Parameter]
+        public String OnEdit { get; set; }
+        [Parameter]
         public bool IsDeletable { get; set; }
         public List<Data> Elements { get; set; } = new List<Data>();
         [Parameter]
