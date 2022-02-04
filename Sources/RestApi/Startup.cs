@@ -1,8 +1,11 @@
+using AutoMapper;
+using AutoMapper.Internal;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,6 +13,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.OpenApi.Models;
+using Model;
+using Shared;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Collections.Generic;
@@ -71,16 +76,20 @@ namespace RestApi
                 options.IncludeXmlComments(XmlCommentsFilePath);
             });
 
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IGenericRepository<GameEntity>, GenericRepository<GameEntity>>();
-            services.AddScoped<IGenericRepository<PlayerBiddingEntity>, GenericRepository<PlayerBiddingEntity>>();
-            services.AddScoped<IGenericRepository<PlayerEntity>, GenericRepository<PlayerEntity>>();
-            services.AddScoped<IGenericRepository<PlayerSessionEntity>, GenericRepository<PlayerSessionEntity>>();
-            services.AddScoped<IGenericRepository<SessionEntity>, GenericRepository<SessionEntity>>();
+
+            services.AddScoped<DbContext, TarotContext>();
+            services.AddScoped<IDataManager, StubLib.Stub>();
+            //services.AddScoped<IDataManager, TarotDBManager>();
             services.AddDbContext<TarotContext>();
             //services.AddAutoMapper(typeof(Startup));
 
 
+            var mapperConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton<IMapper>(mapper);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -108,6 +117,16 @@ namespace RestApi
             {
                 endpoints.MapControllers();
             });
+
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+
+                using (var context = serviceScope.ServiceProvider.GetService<DbContext>())
+                {
+                    context.Database.Migrate();
+                }
+            }
+
         }
     }
 }

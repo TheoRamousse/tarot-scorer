@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TarotDTO
 {
-    public class PlayerAndBiddingDTO
+    public class PlayerAndBiddingDTO : IDTO
     {
 
         public PlayerDTO Player { get; set; }
