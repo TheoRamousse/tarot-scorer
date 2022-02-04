@@ -1,15 +1,51 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
+using APIGateway.Entity;
 using APIGateway.Model;
+using Microsoft.AspNetCore.Components;
 
 namespace APIGateway.Pages
 {
     public partial class Index
     {
+        [Inject]
+        public HttpClient Http { get; set; }
+
         public async Task<List<Data>> FetchDataWithNumberOfElementsAsync(int numberOfElements, int page)
         {
+
+
             List<Data> result = new List<Data>();
+            
+            var jsonDeserialize = await Http.GetFromJsonAsync<PlayerEntity[]>("sample-data/player.json");
+            foreach(var element in jsonDeserialize)
+            {
+                List<GameEntity> lesGames = new List<GameEntity>();
+                Data d = new Data();
+                d.Add("Id", element.Id);
+                d.Add("FirsName", element.FirstName);
+                d.Add("LastName", element.LastName);
+                d.Add("NickName", element.NickName);
+                foreach (var e in element.ListeDesParties)
+                {
+                    var jsonDes = await Http.GetFromJsonAsync<GameEntity[]>("sample-data/game.json");
+                    foreach (var elem in jsonDes)
+                    {
+                        lesGames.Add(elem);
+                    }
+                }
+                d.Add("_ignoreThisPartOfDataOrConsequences", lesGames);
+                result.Add(d);
+            }
+            return result.Skip(page*numberOfElements).Take(numberOfElements).ToList();
+
+            
+
+            /*List<Data> result = new List<Data>();
             Data data1 = new Data();
             data1.Add("nan", true);
             data1.Add("ok", "Toto");
@@ -108,11 +144,7 @@ namespace APIGateway.Pages
             result.Add(data14);
             result.Add(data15);
             result.Add(data16);
-            result.Add(data17);
-
-
-            return result.Skip(page*numberOfElements).Take(numberOfElements).ToList();
-
+            result.Add(data17);*/
         }
 
         public async Task<int> GetTotalNumberOfData()
