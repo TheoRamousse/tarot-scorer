@@ -8,7 +8,7 @@ namespace TarotDTO
 {
     public class GameDTO
     {
-        public long Id { get; private set; }
+        public long Id { get; private set; } = 0;
 
         public DateTime Date { get; private set; }
 

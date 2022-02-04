@@ -7,7 +7,6 @@ using HotChocolate.Types;
 using HotChocolate.Types.Relay;
 using Microsoft.Extensions.Logging;
 using Model;
-using NLog;
 using System.Threading.Tasks;
 using TarotDTO;
 
@@ -16,9 +15,11 @@ namespace GraphQLApi.Mutation
     public class GameMutation
     {
         [GraphQLMetadata("addGame")]
-        public async Task<GameDTOPayload> AddGameAsync(GameDTOInput gameToAdd, [Service] IDataManager context, [Service] IMapper mapper, [Service] ILogger<GameMutation> logger)
+        public async Task<GameDTOPayload> AddGameAsync(GameDTO gameToAdd, [Service] IDataManager context, [Service] IMapper mapper, [Service] ILogger<GameMutation> logger)
         {
-            var result = await context.AddGame(mapper.Map<Game>(gameToAdd));
+            var game = mapper.Map<Game>(gameToAdd);
+            game.Rules = new FakeTarotRuleForApi();
+            var result = await context.AddGame(game);
 
             return null;
         }

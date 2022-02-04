@@ -34,7 +34,6 @@ namespace GraphQLApi
         {
             services.AddSingleton<IDataManager, TarotDBManager>();
             services.AddAutoMapper(typeof(Startup));
-
             services.AddGraphQLServer().AddQueryType<GameQuery>();
             services.AddGraphQLServer().AddMutationType<GameMutation>();
             services.AddGraphQLServer().AddDefaultTransactionScopeHandler();

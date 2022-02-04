@@ -10,7 +10,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="enums\" />
-    <Folder Include="rules\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TarotDB\TarotDB.csproj" />
