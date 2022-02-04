@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GraphQLApi.Inputs;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,8 @@ namespace GraphQLApi.Profiles
                 },
                 Bidding = v.Value
             });
+            CreateMap<GameDTOInput, Game>(); // means you want to map from Game to GameDTOInput
+            CreateMap<PlayerAndBiddingDTOInput, KeyValuePair<Player, Model.Bidding>>().ConstructUsing(v => new KeyValuePair<Player, Model.Bidding>(new Player(0, v.player.firstName, v.player.lastName, v.player.nickName, ""), v.bidding));
         }
     }
 }

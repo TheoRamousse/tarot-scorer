@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TarotDB;
 
 namespace Model
 {
@@ -225,6 +226,6 @@ namespace Model
         /// <param name="id">id of the Game to update</param>
         /// <param name="game">new values to apply to the previous Game</param>
         /// <returns>true if the Game has been updated correctly, false if not</returns>
-        Task<bool> UpdateGame(long id, Game game);
+        Task<Game> UpdateGame(long id, Game game);
     }
 }

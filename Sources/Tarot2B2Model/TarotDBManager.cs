@@ -359,13 +359,13 @@ namespace TarotDB2Model
             return true;
         }
 
-        public async Task<bool> UpdateGame(long id, Game game)
+        public async Task<Game> UpdateGame(long id, Game game)
         {
             GameEntity ge = await UnitOfWork.Repository<GameEntity>().Set.Include(g => g.Biddings)
                                                                                .ThenInclude(b => b.Player)
                                                                                .SingleOrDefaultAsync(g => g.Id == id);
-            if(ge == null)
-                return false;
+            if (ge == null)
+                return null;
             GameEntity ge2 = game.ToEntity();
 
             var temp = ge.Biddings.Except(ge2.Biddings, PlayerBiddingEntity.Comparer).ToList();
@@ -391,14 +391,16 @@ namespace TarotDB2Model
             {
                 property.SetValue(ge, property.GetValue(ge2));
             }
-                                                        
-            if(await UnitOfWork.Repository<GameEntity>().Update(ge) == null)
+
+            var result = await UnitOfWork.Repository<GameEntity>().Update(ge);
+
+            if (result == null)
             {
                 await UnitOfWork.RejectChangesAsync();
-                return false;
+                return null;
             }
             await UnitOfWork.SaveChangesAsync();
-            return true;
+            return result.ToModel();
         }
     }
 }
