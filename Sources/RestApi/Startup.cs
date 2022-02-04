@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -75,6 +76,8 @@ namespace RestApi
                 options.IncludeXmlComments(XmlCommentsFilePath);
             });
 
+
+            services.AddScoped<DbContext, TarotContext>();
             services.AddScoped<IDataManager, StubLib.Stub>();
             //services.AddScoped<IDataManager, TarotDBManager>();
             services.AddDbContext<TarotContext>();
@@ -114,6 +117,16 @@ namespace RestApi
             {
                 endpoints.MapControllers();
             });
+
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+
+                using (var context = serviceScope.ServiceProvider.GetService<DbContext>())
+                {
+                    context.Database.Migrate();
+                }
+            }
+
         }
     }
 }
