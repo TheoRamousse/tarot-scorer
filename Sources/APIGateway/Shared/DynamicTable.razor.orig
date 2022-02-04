@@ -60,7 +60,7 @@
                                 </td>
                             }
                          }
->>>>>>> 3203e5482e2a02cffbf5de139e178605739cb2a5
+>>>>>>> 3203e54 (Finished data deserialize for array)
 
                      }
                     @if (IsEditable || IsViewable || IsDeletable)
