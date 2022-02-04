@@ -4,7 +4,13 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\Jetli\Desktop\TarotScorerCSharp\tarot-scorer\Sources\RestApi\RestApi.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
     <PackageReference Include="NLog" Version="4.7.13" />
@@ -13,7 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+    <ProjectReference Include="..\StubLib\StubLib.csproj" />
     <ProjectReference Include="..\Tarot2B2Model\TarotDB2Model.csproj" />
+    <ProjectReference Include="..\TarotDTO\TarotDTO.csproj" />
   </ItemGroup>
 
 </Project>
