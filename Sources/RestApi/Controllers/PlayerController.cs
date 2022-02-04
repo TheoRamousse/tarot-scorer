@@ -33,14 +33,18 @@ namespace RestApi.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<PlayerDTO>))]
         public async Task<IActionResult> Get(int count, int index = 0)
         {
-            _logger.LogInformation("RestApi: Call GetAll() Player(s) at {dateTime}", "Started", DateTime.UtcNow);
+            _logger.LogInformation("RestApi: Call GetAll() Player(s) ", "Started", DateTime.UtcNow);
             var entity = await _manager.GetPlayers(index, count);
-            //Model to DTO with Mapper 
-            //var dto = _mapper.Map<IEnumerable<PlayerDTO>>(entity);
+            /*
+            ** Model to DTO with Mapper 
+            ** var dto = _mapper.Map<IEnumerable<PlayerDTO>>(entity);
+            **/
 
-            //Model to DTO with Factory
+            /*
+            ** Model to DTO with Factory
+            */
             var dto = PlayerFactory.ToDTO(entity);
-            _logger.LogInformation("RestApi: Ended GetAll() method in Player(s) at {dateTime}", "Ended", DateTime.UtcNow);
+            _logger.LogInformation("RestApi: Ended GetAll() method in Player(s) ", "Ended", DateTime.UtcNow);
             return Ok(dto);
         }
 
@@ -51,10 +55,72 @@ namespace RestApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Count()
         {
-            _logger.LogInformation("RestApi: Call Count() Player(s) at {dateTime}", "Started", DateTime.UtcNow);
+            _logger.LogInformation("RestApi: Call Count() Player(s) ", "Started", DateTime.UtcNow);
             var res = await _manager.GetNbPlayers();
-            _logger.LogInformation("RestApi: Ended Count() method in Player(s) at {dateTime}", "Ended", DateTime.UtcNow);
+            _logger.LogInformation("RestApi: Ended Count() method in Player(s) ", "Ended", DateTime.UtcNow);
             return Ok(res);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(201, Type = typeof(PlayerDTO))]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> Insert(PlayerDTO dto)
+        {
+            _logger.LogInformation("RestApi: Call Insert() Player", "Started");
+            if (dto == null)
+            {
+                _logger.LogError("Error invalid post request");
+                return BadRequest();
+            }
+
+            var player = PlayerFactory.ToModel(dto);
+            bool response = await _manager.AddPlayer(player);
+            _logger.LogInformation("RestApi: Call Insert() Player", "Ended");
+            if (!response)
+                return UnprocessableEntity();
+            return CreatedAtAction(nameof(Get), new { id = dto.Id }, dto);
+
+        }
+
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(200, Type = typeof(PlayerDTO))]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> Update(int id, [FromBody] PlayerDTO dto)
+        {
+            _logger.LogInformation("RestApi: Call Update() Player", "Started");
+
+            if (dto == null)
+            {
+                _logger.LogError("Error invalid put request");
+                return BadRequest();
+            }
+
+            dto.Id = id;
+
+            var player = PlayerFactory.ToModel(dto);
+            bool response = await _manager.UpdatePlayer(player.Id, player);
+            _logger.LogInformation("RestApi: Call Update() Player", "Ended");
+            if (!response)
+                return UnprocessableEntity();
+            return Ok(dto);
+
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(200, Type = typeof(bool))]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> Delete([FromBody] PlayerDTO dto)
+        {
+            _logger.LogInformation("RestApi: Call Delete() Player", "Started");
+
+            var player = PlayerFactory.ToModel(dto);
+            bool response = await _manager.DeletePlayer(player);
+
+            _logger.LogInformation("RestApi: Call Delete() Player", "Ended");
+            if (!response)
+                return UnprocessableEntity();
+            return Ok(true);
         }
     }
 }

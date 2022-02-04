@@ -31,13 +31,12 @@ namespace RestApi.Controllers
 
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<SessionDTO>))]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> Get(int count, int index = 0)
         {
-            _logger.LogInformation("RestApi: Call GetAll() Session(s) at {dateTime}", "Started", DateTime.UtcNow);
-            var count = await _manager.GetNbSessions();
-            var entity = await _manager.GetSessions(0, count);
+            _logger.LogInformation("RestApi: Call GetAll() Session(s)", "Started", DateTime.UtcNow);
+            var entity = await _manager.GetSessions(index, count);
             var dto = SessionFactory.ToDTO(entity);
-            _logger.LogInformation("RestApi: Ended GetAll() method in Session(s) at {dateTime}", "Ended", DateTime.UtcNow);
+            _logger.LogInformation("RestApi: Ended GetAll() method in Session(s)", "Ended", DateTime.UtcNow);
             return Ok(dto);
         }
 
@@ -47,10 +46,72 @@ namespace RestApi.Controllers
         [ProducesResponseType(200, Type = typeof(int))]
         public async Task<IActionResult> Count()
         {
-            _logger.LogInformation("RestApi: Call Count() Session(s) at {dateTime}", "Started", DateTime.UtcNow);
+            _logger.LogInformation("RestApi: Call Count() Session(s)", "Started", DateTime.UtcNow);
             var res = await _manager.GetNbSessions();
-            _logger.LogInformation("RestApi: Ended Count() method in Session(s) at {dateTime}", "Ended", DateTime.UtcNow);
+            _logger.LogInformation("RestApi: Ended Count() method in Session(s)", "Ended", DateTime.UtcNow);
             return Ok(res);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(201, Type = typeof(SessionDTO))]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> Insert(SessionDTO dto)
+        {
+            _logger.LogInformation("RestApi: Call Insert() Session", "Started");
+            if (dto == null)
+            {
+                _logger.LogError("Error invalid post request");
+                return BadRequest();
+            }
+
+            var session = SessionFactory.ToModel(dto);
+            bool response = await _manager.AddSession(session);
+            _logger.LogInformation("RestApi: Call Insert() Session", "Ended");
+            if (!response)
+                return UnprocessableEntity();
+            return CreatedAtAction(nameof(Get), new { id = dto.Id }, dto);
+
+        }
+
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(200, Type = typeof(SessionDTO))]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> Update(int id, [FromBody] SessionDTO dto)
+        {
+            _logger.LogInformation("RestApi: Call Update() Session", "Started");
+
+            if (dto == null)
+            {
+                _logger.LogError("Error invalid put request");
+                return BadRequest();
+            }
+
+            dto.Id = id;
+
+            var session = SessionFactory.ToModel(dto);
+            bool response = await _manager.UpdateSession(session.Id, session);
+            _logger.LogInformation("RestApi: Call Update() Session", "Ended");
+            if (!response)
+                return UnprocessableEntity();
+            return Ok(dto);
+
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(200, Type = typeof(bool))]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> Delete([FromBody] SessionDTO dto)
+        {
+            _logger.LogInformation("RestApi: Call Delete() Session", "Started");
+
+            var session = SessionFactory.ToModel(dto);
+            bool response = await _manager.DeleteSession(session);
+
+            _logger.LogInformation("RestApi: Call Delete() Session", "Ended");
+            if (!response)
+                return UnprocessableEntity();
+            return Ok(true);
         }
     }
 }
