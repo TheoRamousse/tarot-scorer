@@ -1,5 +1,6 @@
 ﻿@using System.Linq
 @using APIGateway.Model
+@inject NavigationManager Navigator
 
 
 @if (Elements.Count != 0)
@@ -38,7 +39,7 @@
                         else
                         {
                             <td>
-                                <input type="checkbox" checked="@property.Value" disabled="true"/>
+                                <input type="checkbox" checked="@property.Value" disabled="true" />
                             </td>
                         }
 
@@ -49,15 +50,20 @@
                             <div style="float:right;">
                                 @if (IsViewable)
                                 {
-                                    <button type="button" class="btn btn-info" style="margin-left: 3rem;">
-                                        Voir
-                                    </button>
+                                    <a href="@(Navigator.BaseUri + OnView + "/" + element.ToArray()[2].Value)">
+                                        <button type="button" class="btn btn-info" style="margin-left: 3rem;">
+                                            Voir
+                                        </button>
+                                    </a>
                                 }
                                 @if (IsEditable)
                                 {
-                                    <button type="button" class="btn btn-warning" style="margin-left: 3rem;">
-                                        Editer
-                                    </button>
+                                    <a href="@(Navigator.BaseUri + OnEdit + "/" + element.ToArray()[2].Value)">
+                                        <button type="button" class="btn btn-warning" style="margin-left: 3rem;">
+                                            Editer
+                                        </button>
+                                    </a>
+
                                 }
                                 @if (IsDeletable)
                                 {
@@ -72,54 +78,57 @@
             }
         </tbody>
     </table>
-    }
+}
 
 <nav class="justify-content-center" aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item"><a class="page-link" @onclick="@((ui) => DecrementCurrentPage())">Précédent</a></li>
-        @if(CurrentPage == 1)
+    <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" @onclick="@((ui) => DecrementCurrentPage())">Précédent</a></li>
+        @if (CurrentPage == 1)
         {
-            for(int i = 1; i <=3 || i <= CurrentPage; i++)
+            for (int i = 1; i <= 3 || i <= CurrentPage; i++)
             {
-                 var tempint = i;
-                 if(i == CurrentPage){
-                    <li class="page-item"><a class="page-link font-weight-bold"  @onclick="@((ui) => ChangeCurrentPage(@tempint))" >@i</a></li>
+                var tempint = i;
+                if (i == CurrentPage)
+                {
+                    <li class="page-item"><a class="page-link font-weight-bold" @onclick="@((ui) => ChangeCurrentPage(@tempint))">@i</a></li>
                 }
                 else
                 {
-                    <li class="page-item"><a class="page-link" @onclick="@((ui) => ChangeCurrentPage(@tempint))" >@i</a></li>
+                    <li class="page-item"><a class="page-link" @onclick="@((ui) => ChangeCurrentPage(@tempint))">@i</a></li>
                 }
             }
         }
-        else if(CurrentPage == NumberOfPages-1 || CurrentPage == NumberOfPages)
+        else if (CurrentPage == NumberOfPages - 1 || CurrentPage == NumberOfPages)
         {
-            for(int i = NumberOfPages-2; i <=NumberOfPages; i++)
+            for (int i = NumberOfPages - 2; i <= NumberOfPages; i++)
             {
                 var tempint = i;
-                if(i == CurrentPage){
-                    <li class="page-item"><a class="page-link font-weight-bold" @onclick="@((ui) => ChangeCurrentPage(@tempint))" >@i</a></li>
+                if (i == CurrentPage)
+                {
+                    <li class="page-item"><a class="page-link font-weight-bold" @onclick="@((ui) => ChangeCurrentPage(@tempint))">@i</a></li>
                 }
                 else
                 {
-                    <li class="page-item"><a class="page-link" @onclick="@((ui) => ChangeCurrentPage(@tempint))" >@i</a></li>
+                    <li class="page-item"><a class="page-link" @onclick="@((ui) => ChangeCurrentPage(@tempint))">@i</a></li>
                 }
             }
         }
         else
         {
-            for(int i = CurrentPage-1; i <=CurrentPage+1 && i <=NumberOfPages; i++)
+            for (int i = CurrentPage - 1; i <= CurrentPage + 1 && i <= NumberOfPages; i++)
             {
                 var tempint = i;
-                if(i == CurrentPage){
-                    <li class="page-item"><a class="page-link font-weight-bold" @onclick="@((ui) => ChangeCurrentPage(@tempint))" >@i</a></li>
+                if (i == CurrentPage)
+                {
+                    <li class="page-item"><a class="page-link font-weight-bold" @onclick="@((ui) => ChangeCurrentPage(@tempint))">@i</a></li>
                 }
                 else
                 {
-                    <li class="page-item"><a class="page-link" @onclick="@((ui) => ChangeCurrentPage(@tempint))" >@i</a></li>
+                    <li class="page-item"><a class="page-link" @onclick="@((ui) => ChangeCurrentPage(@tempint))">@i</a></li>
                 }
             }
         }
 
-    <li class="page-item"><a class="page-link" @onclick="@((ui) => IncrementCurrentPage())">Suivant</a></li>
-  </ul>
+        <li class="page-item"><a class="page-link" @onclick="@((ui) => IncrementCurrentPage())">Suivant</a></li>
+    </ul>
 </nav>
