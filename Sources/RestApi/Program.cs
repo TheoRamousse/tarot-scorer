@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NLog.Web;
+
 
 namespace RestApi
 {
@@ -20,11 +20,17 @@ namespace RestApi
         public static IHostBuilder CreateHostBuilder(string[] args)
         =>
             Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseNLog();
-                webBuilder.UseStartup<Startup>();
-
-            });
-    }
+			  .ConfigureWebHostDefaults(webBuilder =>
+			  {
+				  webBuilder
+                    .ConfigureLogging(loggingBuilder =>
+                    {
+                        loggingBuilder.ClearProviders();
+                        loggingBuilder
+                            .AddDebug()
+                            .AddEventLog();
+                    })
+                    .UseStartup<Startup>();
+			  });
+	}
 }
