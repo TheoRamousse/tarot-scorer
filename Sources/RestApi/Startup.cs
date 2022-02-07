@@ -78,8 +78,8 @@ namespace RestApi
 
 
             services.AddScoped<DbContext, TarotContext>();
-            services.AddScoped<IDataManager, StubLib.Stub>();
-            //services.AddScoped<IDataManager, TarotDBManager>();
+            //services.AddScoped<IDataManager, StubLib.Stub>();
+            services.AddScoped<IDataManager, TarotDBManager>();
             services.AddDbContext<TarotContext>();
             //services.AddAutoMapper(typeof(Startup));
 
