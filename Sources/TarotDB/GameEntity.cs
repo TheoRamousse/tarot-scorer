@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TarotDB
 {
-    class GameEntity
+    public class GameEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

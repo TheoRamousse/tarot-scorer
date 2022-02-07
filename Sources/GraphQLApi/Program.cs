@@ -22,11 +22,10 @@ namespace GraphQLApi
                 .ConfigureLogging(logging =>
                 {
                     logging.ClearProviders();
-                    logging.SetMinimumLevel(LogLevel.Trace);
+                    logging.AddDebug().AddEventLog();
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseNLog();
                     webBuilder.UseStartup<Startup>();
                     webBuilder.UseUrls("http://localhost:5003/ui/playdround");
                 });
