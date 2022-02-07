@@ -75,23 +75,71 @@ Actuellement, nous avons réalisé les tâches suivantes pour la réalisation du
 
 - API Gateway
 
-- API GraphQL:
-
-Voici des exemples de requetes avec l'API GraphQL
+- API GraphQL
 
 
 # Usage
 
-Pour l'API REST 
+### Pour l'API REST
+***
+### Pour l'API GraphQL
+***
+Nous avons la possibilité d'effectuer des requêtes personnalisées.
+Voici ci dessous un **exemple de requête** que nous pouvons effectuer : 
+![Image text](/Documentation/doc_images/GraphQl/requete1.png "Requête pour les parties")
+
+Les requêtes vont être **modulables** en fonctions des envies de nos différents utilisateurs, sur cette exemple la **pagination** (nombre d'éléments par page) est fixé sur 1 (numberOfElementsPerPage:**1**) et nous débutons au **premier élément** de nos données (pageNumber:**0**) mais l'utilisateur pourra choisir à quelle page il veut débuter.
+
+De plus les champs présent ici dans la requête ne sont pas fixes, en effet on peut les enlever ou bien en ajouter dans les champs disponibles ([**Voir les champs**](#champs)).
+
+Voici la **réponse obtenue avec la requête ci dessus** :
+![Image text](/Documentation/doc_images/GraphQl/reponse1.png "Reponse pour les parties")
+
+<a name="champs"></a>
+Comme préciser ci dessus, l'utilisateur va pouvoir séléctionner les champs dont il a besoin.
+Voici les champs disponibles:
+
+-**Pour les joueurs:**
+![Image text](/Documentation/doc_images/GraphQl/champsPlayer.png "Champs pour les joueurs")
+
+Les informations disponibles sur les joueurs sont: son identifiant, son prénom, son nom et son surnom.
+
+-**Pour les parties:**
+![Image text](/Documentation/doc_images/GraphQl/champsGame.png "Champs pour les parties")
+
+Les informations disponibles sur les parties sont: son identifiant , la date de la partie, le TakerPoints , l'excuse , le vingt et un et la liste de joueurs avec leur bidding correspondant.
+Pour cette liste nous avons de même la possibilité de choisir les champs voulus:
+
+![Image text](/Documentation/doc_images/GraphQl/champsPlayer&Bidding.png "Champs pour les joueurs et leur Bidding")
+
+Les informations disponibles ici sont un joueur(vu ci dessus) et le bidding.
+
+
+Grâce à ces différents champs et en suivant l'exemple les utilisateurs pourrons requêter notre API GraphQL en ne prenant que les champs dont ils ont besoin.
+
+[**Des tests à faire ?**](#GraphQLRequest)
 
 
 # Running the tests
+
+## Global tests
+***
 Dans l'état actuel de notre projet, nous avons seulement des classes de test et une petite application console qui est simplement là pour montrer que notre programme compile. Pour pouvoir lancer les tests, il faut simplement ouvrir le projet dans VS2019, il faut ensuite faire un clique droit (soit sur la solution générale soit sur un test_UT) et séléctionner "Exécuter les tests". 
 ![Image text](/Documentation/doc_images/tests/generation.png "Exécution des tests")  
 Lorsque l'explorateur de tests est ouvert vous pouvez alors séléctionner vous même le test à éxécuter.
 Si le test retourne le résultat attendu alors il affiche un cercle vert sinon il affiche un cercle rouge.
+
 ![Image text](/Documentation/doc_images/tests/selection.png "Selection de tests")  
 
+***
+## GraphQL tests
+***
+<a name="GraphQLRequest"></a>
+Pour effectuer des requêtes de tests il faut tout d'abord **lancer la solution GraphQLAPI**.
+
+Ensuite **il faut vous rendre sur le lien** : http://localhost:5003/ui/playground .
+
+**Taper vos requêtes à gauche** (comme vu ci dessus avec l'exemple de requête) et cliquez ensuite sur le bouton **"play"**, si votre requête est bien écrite alors vous verrez une **réponse cohérente à droite du site**.
 
 # Roadmap
 
