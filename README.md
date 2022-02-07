@@ -18,24 +18,106 @@ Vous pouvez créer de nouveaux joueurs ou utiliser les joueurs créés précéde
 
 ## Requirements
 
+Il faut **visualstudio(minimum VS2019*)* mais la version peut être plus récente
+Il faut **git**
+
 ## Installation
+
+Il faut **visualstudio** au minimum VS2019 : https://visualstudio.microsoft.com/fr/
+
+Il vous faut **git**, pour récuperer le projet:
+
+-créer un dossier personnel faites clic droit dessus puis cliquez sur "git bash here"
+![Image text](/Documentation/doc_images/git.png "git bash here") 
+
+Puis écrire la comande suivante:
+```
+git clone https://gitlab.iut-clermont.uca.fr/mabouvard2/tarot-scorer.git
+```
+
+Le projet est maintenant das le dossier que vous venez de créer.
+
+
+
+
+Voici les **packages nugets** installés et leur version pour chaque solution du projet :
+
+•	**Model** : *NETStandard.Library(2.0.3)*
+***
+•	**RestApi** : *Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer(5.0.0), NLog(4.7.13), NLog.Web.AspNetCore(4.14.0), Swashbuckle.AspNetCore(5.6.3)*
+***
+•	**StubLib** : *NETStandard.Library(2.0.3)*
+***
+•	**TarotDB** : *Microsoft.EntityFrameworkCore(3.1.22), Microsoft.EntityFrameworkCore.Sqlite(3.1.22), NETStandard.Library(2.0.3)*
+***
+•	**TarotDB2Model**: *NETStandard.Library(2.0.3)*
+***
+•	**Tests\DataManager_UT** : *coverlet.collector(3.0.2), xunit(2.4.1), xunit.runner.visualstudio(2.4.3), Microsoft.EntityFrameworkCore.Design(3.1.22), Microsoft.NET.Test.Sdk(16.9.4)*
+***
+•	**Tests\ManagerDBTests** : *Microsoft.EntityFrameworkCore.Design(3.1.22)*
+***
+•	**Tests\ManagerStubTests** :
+***
+•	**Tests\Model_UT** : *coverlet.collector(3.0.2), xunit(2.4.1), xunit.runner.visualstudio(2.4.3), Microsoft.NET.Test.Sdk(16.9.4)*
+***
+•	**Tests\TarotDB_Tests** : *Microsoft.EntityFrameworkCore.Design(3.1.22)*
+***
+•	**Tests\TarotDB_UT** : *coverlet.collector(3.0.2), xunit(2.4.1), xunit.runner.visualstudio(2.4.3), Microsoft.EntityFrameworkCore.Design(3.1.22), Microsoft.NET.Test.Sdk(16.9.4)*
+***
 
 ## Sample app
 
 # What we have now?
 
+Actuellement, nous avons réalisé les tâches suivantes pour la réalisation du projet : 
+
+- API Rest
+
+- API Gateway
+
+- API GraphQL:
+
+Voici des exemples de requetes avec l'API GraphQL
+
+
 # Usage
 
+Pour l'API REST 
+
+
 # Running the tests
+Dans l'état actuel de notre projet, nous avons seulement des classes de test et une petite application console qui est simplement là pour montrer que notre programme compile. Pour pouvoir lancer les tests, il faut simplement ouvrir le projet dans VS2019, il faut ensuite faire un clique droit (soit sur la solution générale soit sur un test_UT) et séléctionner "Exécuter les tests". 
+![Image text](/Documentation/doc_images/tests/generation.png "Exécution des tests")  
+Lorsque l'explorateur de tests est ouvert vous pouvez alors séléctionner vous même le test à éxécuter.
+Si le test retourne le résultat attendu alors il affiche un cercle vert sinon il affiche un cercle rouge.
+![Image text](/Documentation/doc_images/tests/selection.png "Selection de tests")  
+
 
 # Roadmap
+
+# Why we choose GraphQL API?
+
+Lors des différentes requêtes que nos utilisateur vont effectuer, nous n'avons pas la certitude des données que ces derniers veulent récupérer.
+En effet **GraphQL** est une **API** permettant de pallier ce problème grace aux multiples avantages qu'il nous offre :
+
+- **On obtient toujours le résultat qu’on attend**, autrement dit il aide à prévoir les données reçues ainsi que la structure de ces dernières. Cela simplifie le traitement des données que le serveur renvoie et permet de les faire consommer par l’application à laquelle on les envoies.
+
+- **Le serveur sait exactement quelles données on veut voir**, en ayant une structure claire des objets et des champs possibles qui peuvent être interrogés, grace à cela le serveur saura toujours ce qu’il est censé renvoyer. S’il y a une erreur dans la requête, elle ne sera pas validée et l’utilisateur sera invité à envoyer un message d’erreur descriptif qui permettra un dépannage rapide.
+
+
+Comme spécifié ci-dessus **GraphQL** nous permet de faire des **requêtes très spécialisées** (seulement ce que l'utilisateur veut savoir), ce qui engendre un **volume de transfert de données plus faible** signifie également une **connexion plus rapide** et de **meilleurs temps de chargement** pour les utilisateurs.
+C'est bénéfique pour l'utilisateur et pour l'éfficacité de notre application d'avoir de meilleures performances.
+ 
 
 # Known issues and limitations
 
 # Built with
 
 # Authors
-Marc Chevaldonné - #0 World Dev
+Maël Bouvard
+Théo Ramousse 
+Mathieu Albiero
+Raphaël Hacques
 
 # Acknowledgments
 - Nicolas Raymond
