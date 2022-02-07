@@ -38,33 +38,6 @@ git clone https://gitlab.iut-clermont.uca.fr/mabouvard2/tarot-scorer.git
 Le projet est maintenant das le dossier que vous venez de créer.
 
 
-
-
-Voici les **packages nugets** installés et leur version pour chaque solution du projet :
-
-•	**Model** : *NETStandard.Library(2.0.3)*
-***
-•	**RestApi** : *Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer(5.0.0), NLog(4.7.13), NLog.Web.AspNetCore(4.14.0), Swashbuckle.AspNetCore(5.6.3)*
-***
-•	**StubLib** : *NETStandard.Library(2.0.3)*
-***
-•	**TarotDB** : *Microsoft.EntityFrameworkCore(3.1.22), Microsoft.EntityFrameworkCore.Sqlite(3.1.22), NETStandard.Library(2.0.3)*
-***
-•	**TarotDB2Model**: *NETStandard.Library(2.0.3)*
-***
-•	**Tests\DataManager_UT** : *coverlet.collector(3.0.2), xunit(2.4.1), xunit.runner.visualstudio(2.4.3), Microsoft.EntityFrameworkCore.Design(3.1.22), Microsoft.NET.Test.Sdk(16.9.4)*
-***
-•	**Tests\ManagerDBTests** : *Microsoft.EntityFrameworkCore.Design(3.1.22)*
-***
-•	**Tests\ManagerStubTests** :
-***
-•	**Tests\Model_UT** : *coverlet.collector(3.0.2), xunit(2.4.1), xunit.runner.visualstudio(2.4.3), Microsoft.NET.Test.Sdk(16.9.4)*
-***
-•	**Tests\TarotDB_Tests** : *Microsoft.EntityFrameworkCore.Design(3.1.22)*
-***
-•	**Tests\TarotDB_UT** : *coverlet.collector(3.0.2), xunit(2.4.1), xunit.runner.visualstudio(2.4.3), Microsoft.EntityFrameworkCore.Design(3.1.22), Microsoft.NET.Test.Sdk(16.9.4)*
-***
-
 ## Sample app
 
 # What we have now?
@@ -158,6 +131,44 @@ C'est bénéfique pour l'utilisateur et pour l'éfficacité de notre application
  
 
 # Known issues and limitations
+
+# Nugets
+
+Voici les **packages nugets** installés et leur version pour chaque solution du projet :
+
+•	**Model** : *NETStandard.Library(2.0.3)*
+***
+•	**RestApi** : *Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer(5.0.0), NLog(4.7.13), NLog.Web.AspNetCore(4.14.0), Swashbuckle.AspNetCore(5.6.3)*
+***
+•	**StubLib** : *NETStandard.Library(2.0.3)*
+***
+•	**TarotDB** : *Microsoft.EntityFrameworkCore(3.1.22), Microsoft.EntityFrameworkCore.Sqlite(3.1.22), NETStandard.Library(2.0.3)*
+***
+•	**TarotDB2Model**: *NETStandard.Library(2.0.3)*
+***
+•	**Tests\DataManager_UT** : *coverlet.collector(3.0.2), xunit(2.4.1), xunit.runner.visualstudio(2.4.3), Microsoft.EntityFrameworkCore.Design(3.1.22), Microsoft.NET.Test.Sdk(16.9.4)*
+***
+•	**Tests\ManagerDBTests** : *Microsoft.EntityFrameworkCore.Design(3.1.22)*
+***
+•	**Tests\ManagerStubTests** :
+***
+•	**Tests\Model_UT** : *coverlet.collector(3.0.2), xunit(2.4.1), xunit.runner.visualstudio(2.4.3), Microsoft.NET.Test.Sdk(16.9.4)*
+***
+•	**Tests\TarotDB_Tests** : *Microsoft.EntityFrameworkCore.Design(3.1.22)*
+***
+•	**Tests\TarotDB_UT** : *coverlet.collector(3.0.2), xunit(2.4.1), xunit.runner.visualstudio(2.4.3), Microsoft.EntityFrameworkCore.Design(3.1.22), Microsoft.NET.Test.Sdk(16.9.4)*
+***
+•	**GraphQLApi** : *AutoMapper(11.0.0), AutoMapper.Extensions.Microsoft.DependencyInjection(11.0.0), coverlet.collector(3.0.2), GraphQL(4.7.1), GraphQL.Server.Ui.Playground(5.2.0), HotChocolate.AspNetCore(12.4.1), Microsoft.EntityFrameworkCore(3.1.22), Microsoft.EntityFrameworkCore.Design(3.1.22), Microsoft.EntityFrameworkCore.Sqlite(3.1.22), Microsoft.NET.Test.Sdk(16.9.4), NETStandard.Library(2.0.3), Swashbuckle.AspNetCore(5.6.3), xunit(2.4.1), xunit.runner.visualstudio(2.4.3)*
+***
+
+
+**AutoMapper**: c'est une petite bibliothèque simple conçue pour résoudre un problème d'une complexité trompeuse, il permet de se débarrasser du code qui mappait un objet à un autre.
+
+**GraphQL**: c'est une bibliothèque qui permet de réaliser les requêtes personnalisées.
+
+**GraphQL.Server.Ui.Playground**: c'est ce qui permet de réaliser le lien entre notre application et le site web préciser dans les tests GraphQL.
+
+**HotChocolate.AspNetCore**:c'est une plate-forme GraphQL qui peut nous aider à créer une couche GraphQL sur votre infrastructure existante
 
 # Built with
 
