@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TarotDB
 {
-    class PlayerSessionEntity
+    public class PlayerSessionEntity
     {
         public PlayerEntity Player { get; set; }
 
@@ -12,7 +12,7 @@ namespace TarotDB
         public static PlayerSessionEntityEqualityComparer EqualityComparer { get; } = new PlayerSessionEntityEqualityComparer();
     }
 
-    class PlayerSessionEntityEqualityComparer : EqualityComparer<PlayerSessionEntity>
+    public class PlayerSessionEntityEqualityComparer : EqualityComparer<PlayerSessionEntity>
     {
         public override bool Equals(PlayerSessionEntity x, PlayerSessionEntity y)
         {

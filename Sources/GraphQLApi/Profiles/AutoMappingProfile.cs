@@ -28,6 +28,16 @@ namespace GraphQLApi.Profiles
             });
             CreateMap<PlayerAndBiddingDTO, KeyValuePair<Player, Model.Bidding>>().ConstructUsing(v => new KeyValuePair<Player, Model.Bidding>(new Player(v.Player.Id, v.Player.FirstName, v.Player.LastName, v.Player.NickName, ""), v.Bidding));
 
+            CreateMap<Player, PlayerDTO>().ConstructUsing(v => new PlayerDTO()
+            {
+                Id = v.Id,
+                FirstName = v.FirstName,
+                LastName = v.LastName,
+                NickName = v.NickName
+
+            });
+
+            CreateMap<PlayerDTO, Player>().ConstructUsing(v => new Player(v.Id, v.FirstName, v.LastName, v.NickName, ""));
 
             CreateMap<GameDTOInput, Game>(); // means you want to map from Game to GameDTO
             CreateMap<PlayerAndBiddingDTOInput, KeyValuePair<Player, Model.Bidding>>().ConstructUsing(v => new KeyValuePair<Player, Model.Bidding>(new Player(0,v.player.firstName, v.player.lastName, v.player.nickName, ""), v.bidding));

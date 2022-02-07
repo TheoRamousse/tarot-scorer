@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TarotDB;
 using TarotDB2Model;
 
 namespace GraphQLApi
@@ -32,11 +34,13 @@ namespace GraphQLApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<DbContext, TarotContext>();
             services.AddSingleton<IDataManager, TarotDBManager>();
             services.AddAutoMapper(typeof(Startup));
             services.AddGraphQLServer().AddQueryType<GameQuery>();
             services.AddGraphQLServer().AddMutationType<GameMutation>();
             services.AddGraphQLServer().AddDefaultTransactionScopeHandler();
+            services.AddDbContext<TarotContext>();
 
         }
 
@@ -53,6 +57,13 @@ namespace GraphQLApi
 
             app.UseRouting();
 
+            using(var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                using(var context = serviceScope.ServiceProvider.GetService<DbContext>())
+                {
+                    context.Database.Migrate();
+                }
+            }
 
             app.UseEndpoints(endpoints =>
             {

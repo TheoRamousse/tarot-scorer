@@ -24,7 +24,7 @@ namespace ManagerDBTests
                     }
                 }*/
 
-                await dbManager.AddGame(new Game(5, new DateTime(2021, 5, 5), new FrenchTarotRules(), 87, PetitResult.SavedAuBout, Poignée.Simple, false, true, Chelem.AnnouncedSuccess));
+                await dbManager.AddGame(new Game(0, new DateTime(2021, 5, 5), new FrenchTarotRules(), 87, PetitResult.SavedAuBout, Poignée.Simple, false, true, Chelem.AnnouncedSuccess));
                 var result = await dbManager.GetGames(0, 3);
 
                 foreach(var elt in result)

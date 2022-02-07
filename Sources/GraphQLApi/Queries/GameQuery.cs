@@ -2,8 +2,8 @@
 using GraphQL;
 using GraphQL.Types;
 using HotChocolate;
+using Microsoft.Extensions.Logging;
 using Model;
-using NLog;
 using StubLib;
 using System;
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ namespace GraphQLApi.Queries
     public class GameQuery
     {
         [GraphQLMetadata("games")]
-        public async Task<IEnumerable<GameDTO>> GetGames(int numberOfElementsPerPage, int pageNumber, [Service] IDataManager context, [Service] IMapper mapper, [Service] ILogger logger)
+        public async Task<IEnumerable<GameDTO>> GetGames(int numberOfElementsPerPage, int pageNumber, [Service] IDataManager context, [Service] IMapper mapper, [Service] ILogger<GameQuery> logger)
         {
             List<Game> l = new List<Game>(await context.GetGames(pageNumber, numberOfElementsPerPage));
             List<GameDTO> result = new List<GameDTO>();
@@ -34,13 +34,13 @@ namespace GraphQLApi.Queries
         }
 
         [GraphQLMetadata("game")]
-        public async Task<GameDTO> GetGame(long id, [Service] IDataManager context, [Service] IMapper mapper, [Service] ILogger logger)
+        public async Task<GameDTO> GetGame(long id, [Service] IDataManager context, [Service] IMapper mapper, [Service] ILogger<GameQuery> logger)
         {
             return mapper.Map<GameDTO>(await context.GetGameById(id));
         }
 
         [GraphQLMetadata("gamesByPlayerId")]
-        public async Task<IEnumerable<GameDTO>> GetGamesByPlayerId(int numberOfElementsPerPage, int pageNumber, long playerId, [Service] IDataManager context, [Service] IMapper mapper, [Service] ILogger logger)
+        public async Task<IEnumerable<GameDTO>> GetGamesByPlayerId(int numberOfElementsPerPage, int pageNumber, long playerId, [Service] IDataManager context, [Service] IMapper mapper, [Service] ILogger<GameQuery> logger)
         {
             var resultNotConverted = await context.GetGamesByPlayer(await context.GetPlayerById(playerId), pageNumber, numberOfElementsPerPage);
             List<GameDTO> result = new List<GameDTO>();
@@ -49,7 +49,7 @@ namespace GraphQLApi.Queries
         }
 
         [GraphQLMetadata("gamesByPlayerName")]
-        public async Task<GameDTO> GetGameByPlayerName(int numberOfElementsPerPage, int pageNumber, string name, [Service] IDataManager context, [Service] IMapper mapper, [Service] ILogger logger)
+        public async Task<GameDTO> GetGameByPlayerName(int numberOfElementsPerPage, int pageNumber, string name, [Service] IDataManager context, [Service] IMapper mapper, [Service] ILogger<GameQuery> logger)
         {
             List<Game> result = new List<Game>();
             foreach(Player p in await context.GetPlayersByName(name, 0, int.MaxValue))

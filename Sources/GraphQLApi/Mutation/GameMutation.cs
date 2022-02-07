@@ -19,5 +19,14 @@ namespace GraphQLApi.Mutation
 
             return null;
         }
+
+
+        [GraphQLMetadata("addPlayer")]
+        public async Task<PlayerDTOPayload> AddPlayerAsync(PlayerDTO playerToAdd, [Service] IDataManager context, [Service] IMapper mapper, [Service] ILogger<GameMutation> logger)
+        {
+            var result = await context.AddPlayer(mapper.Map<Player>(playerToAdd));
+
+            return null;
+        }
     }
 }
