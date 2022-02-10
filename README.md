@@ -35,6 +35,7 @@ Le projet est maintenant das le dossier que vous venez de créer.
 
 
 Ensuite il faut que vous installiez le nuget :  *Microsoft.EntityFrameworkCore.Sqlite* (en **version 3** la plus avancée sinon pas compatible) 
+
 ![Image text](/Documentation/doc_images/nugetSql.png "Microsoft.EntityFrameworkCore.Sqlite")
 
 et le nuget : Microsoft.EntityFrameworkCore.Design
