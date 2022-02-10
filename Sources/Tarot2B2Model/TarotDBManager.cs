@@ -364,35 +364,35 @@ namespace TarotDB2Model
             GameEntity ge = await UnitOfWork.Repository<GameEntity>().Set.Include(g => g.Biddings)
                                                                                .ThenInclude(b => b.Player)
                                                                                .SingleOrDefaultAsync(g => g.Id == id);
-            if(ge == null)
+            if (ge == null)
                 return false;
             GameEntity ge2 = game.ToEntity();
 
             var temp = ge.Biddings.Except(ge2.Biddings, PlayerBiddingEntity.Comparer).ToList();
             var temp2 = ge2.Biddings.Except(ge.Biddings, PlayerBiddingEntity.Comparer).ToList();
 
-            foreach(var pbe in ge.Biddings)
+            foreach (var pbe in ge.Biddings)
             {
                 _dbContext.Entry<PlayerBiddingEntity>(pbe).State = EntityState.Detached;
             }
 
-            foreach(var pbe in temp)
+            foreach (var pbe in temp)
             {
                 _dbContext.Entry<PlayerBiddingEntity>(pbe).State = EntityState.Deleted;
             }
-            foreach(var pbe in temp2)
+            foreach (var pbe in temp2)
             {
                 _dbContext.Entry<PlayerBiddingEntity>(pbe).State = EntityState.Added;
             }
 
-            foreach(var property in typeof(GameEntity).GetProperties()
+            foreach (var property in typeof(GameEntity).GetProperties()
                                                         .Where(pi => pi.CanWrite
                                                                 && pi.Name != nameof(GameEntity.Id)))
             {
                 property.SetValue(ge, property.GetValue(ge2));
             }
-                                                        
-            if(await UnitOfWork.Repository<GameEntity>().Update(ge) == null)
+
+            if (await UnitOfWork.Repository<GameEntity>().Update(ge) == null)
             {
                 await UnitOfWork.RejectChangesAsync();
                 return false;
@@ -400,5 +400,6 @@ namespace TarotDB2Model
             await UnitOfWork.SaveChangesAsync();
             return true;
         }
+
     }
 }

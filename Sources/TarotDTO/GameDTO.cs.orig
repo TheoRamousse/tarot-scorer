@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TarotDTO
+{
+    public class GameDTO
+    {
+<<<<<<< HEAD
+        public long Id { get;  set; }
+=======
+        public long Id { get; private set; } = 0;
+>>>>>>> f54fd5aada460929163fce34943fcf86b6c91ec1
+
+        public DateTime Date { get;  set; }
+
+        public int TakerPoints { get;  set; }
+
+        public bool? Excuse { get;  set; }
+
+        public bool? TwentyOne { get;  set; }
+
+        public List<PlayerAndBiddingDTO> Players { get; set; } = new List<PlayerAndBiddingDTO>();
+    }
+}

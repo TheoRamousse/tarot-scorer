@@ -5,5 +5,5 @@ using System.Threading.Tasks;
 
 namespace GraphQLApi.Payloads
 {
-    public record PlayerDTOPayload(string firstname, string lastname, string nickname);
+    public record PlayerDTOPayload(string firstName, string lastName, string nickName);
 }
