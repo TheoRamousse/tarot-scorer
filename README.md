@@ -12,10 +12,6 @@ Vous pouvez créer de nouveaux joueurs ou utiliser les joueurs créés précéde
 # Table of contents
 [[_TOC_]]
 
-# Documentation
-
-# Getting started
-
 ## Requirements
 
 Il faut **visualstudio(minimum VS2019*)* mais la version peut être plus récente
@@ -38,7 +34,34 @@ git clone https://gitlab.iut-clermont.uca.fr/mabouvard2/tarot-scorer.git
 Le projet est maintenant das le dossier que vous venez de créer.
 
 
-## Sample app
+Ensuite il faut que vous installiez le nuget :  *Microsoft.EntityFrameworkCore.Sqlite* (en **version 3** la plus avancée sinon pas compatible) 
+![Image text](/Documentation/doc_images/nugetSql "Microsoft.EntityFrameworkCore.Sqlite")
+
+et le nuget : Microsoft.EntityFrameworkCore.Design
+
+![Image text](/Documentation/doc_images/nugetDesign "Microsoft.EntityFrameworkCore.Design")
+
+
+
+Après cela rendez vous sur la console de gestionnaire de packages.
+
+Une fois dedans rendez vous sur le projet TarotDB avec cette commande:
+```
+cd .\TarotDB
+```
+pour vérifier que vous êtes dans le bon dossier vous pouvez taper la commande:
+```
+ls
+```
+
+Vous êtes censé obtenir ceci:
+![Image text](/Documentation/doc_images/consoleNuget "Déplacement dans la bonne solution")
+
+
+Une fois dans cette solution taper la commande :
+```
+dotnet ef database update -- connection "Data Source=../GraphQLApi/Tarot.db" --startup-project ../GraphQLApi/GraphQLApi.csproj
+```
 
 # What we have now?
 
@@ -114,10 +137,10 @@ Ensuite **il faut vous rendre sur le lien** : http://localhost:5003/ui/playgroun
 
 **Taper vos requêtes à gauche** (comme vu ci dessus avec l'exemple de requête) et cliquez ensuite sur le bouton **"play"**, si votre requête est bien écrite alors vous verrez une **réponse cohérente à droite du site**.
 
-# Roadmap
 
-# Why we choose GraphQL API?
+# Why we choose these API?
 
+### GraphQL :
 Lors des différentes requêtes que nos utilisateur vont effectuer, nous n'avons pas la certitude des données que ces derniers veulent récupérer.
 En effet **GraphQL** est une **API** permettant de pallier ce problème grace aux multiples avantages qu'il nous offre :
 
@@ -129,8 +152,18 @@ En effet **GraphQL** est une **API** permettant de pallier ce problème grace au
 Comme spécifié ci-dessus **GraphQL** nous permet de faire des **requêtes très spécialisées** (seulement ce que l'utilisateur veut savoir), ce qui engendre un **volume de transfert de données plus faible** signifie également une **connexion plus rapide** et de **meilleurs temps de chargement** pour les utilisateurs.
 C'est bénéfique pour l'utilisateur et pour l'éfficacité de notre application d'avoir de meilleures performances.
  
+### REST :
 
-# Known issues and limitations
+Pour rappel REST Representational State Transfer (ou transfert d’état de représentation, en français), constitue un ensemble de normes, ou de lignes directrices architecturales qui structurent la façon de communiquer les données entre votre application et le reste du monde, ou entre différents composants de votre application. L'API  REST se base sur le protocole HTTP pour transférer les informations.
+
+
+
+# Features
+
+Tarot Scoreur permet maintenant la gestion de 2 API (une API REST avec gateway et une API GraphQL).
+Sur ces API sont disponibles les opérations CRUD (create, read, update, delete).
+
+
 
 # Nugets
 
@@ -170,7 +203,11 @@ Voici les **packages nugets** installés et leur version pour chaque solution du
 
 **HotChocolate.AspNetCore**:c'est une plate-forme GraphQL qui peut nous aider à créer une couche GraphQL sur votre infrastructure existante
 
-# Built with
+# Participation
+Pour le projet le groupe s'est séparé en 2 sous-groupes, Théo et Mathieu sur le coté GraphQL et Raphaël et Maël sur l'API REST et gateway.
+Les commits peuvent donc être différents sur les membres du groupe car le travail s'est souvent effectué sur un PC après la mise en commun (une seule personne commit le travail de 2).
+La documentation à été répartie dans l'ensemble du groupe de manière plutôt égale.
+
 
 # Authors
 Maël Bouvard
@@ -181,3 +218,28 @@ Raphaël Hacques
 # Acknowledgments
 - Nicolas Raymond
 - Thomas Bellembois
+
+# documentation
+description du fonctionnement la solution globale
+dire ce qu'on a codé sur la partie serveur 
+quelles sont les grandes étapes pour mettre en place cela 
+montrer avec des screens
+
+
+readme:
+qui a fait projet
+cmment le lancer
+qu'est ce que je dois demarrer sur quel protocol
+migrations
+est ce qu'on doit installer une base de donner
+ou snt les autres documents
+
+
+
+schéma 
+expliquer la structure : pourquoi comme ça
+comment est il découper
+
+API gateway
+que va t'elle faire
+comment route elle les elements
