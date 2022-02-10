@@ -46,6 +46,8 @@ et le nuget : Microsoft.EntityFrameworkCore.Design
 
 Après cela rendez vous sur la console de gestionnaire de packages.
 
+![Image text](/Documentation/doc_images/gestionnaireConsole.png "Accès à la console de gestionnaire de package")
+
 Une fois dedans rendez vous sur le projet TarotDB avec cette commande:
 ```
 cd .\TarotDB
@@ -220,7 +222,8 @@ Raphaël Hacques
 - Nicolas Raymond
 - Thomas Bellembois
 
-# documentation
+# documentation à faire
+
 description du fonctionnement la solution globale
 dire ce qu'on a codé sur la partie serveur 
 quelles sont les grandes étapes pour mettre en place cela 
@@ -228,19 +231,18 @@ montrer avec des screens
 
 
 readme:
-qui a fait projet
-cmment le lancer
 qu'est ce que je dois demarrer sur quel protocol
 migrations
-est ce qu'on doit installer une base de donner
-ou snt les autres documents
 
-
-
-schéma 
+schéma: 
 expliquer la structure : pourquoi comme ça
 comment est il découper
 
-API gateway
+API gateway / REST:
 que va t'elle faire
 comment route elle les elements
+que couvre api rest
+
+Autres:
+faire séparation du readme en plusieurs documents
+dire ou sont les autres documents dans readme
