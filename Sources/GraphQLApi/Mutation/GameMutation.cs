@@ -51,6 +51,64 @@ namespace GraphQLApi.Mutation
             {
                 result = false;
             }
+            logger.LogInformation("Exited in the method AddPlayerAsync");
+            return result;
+        }
+
+        [GraphQLMetadata("updatePlayer")]
+        public async Task<bool> UpdatePlayerAsync(PlayerDTO playerToUpdate, [Service] IDataManager context, [Service] IMapper mapper, [Service] ILogger<GameMutation> logger)
+        {
+            bool result = true;
+            logger.LogInformation("Entered in the method UpdatePlayerAsync with parameters : " + playerToUpdate);
+            try
+            {
+                var player = mapper.Map<Player>(playerToUpdate);
+                player.Image = "";
+                return await context.UpdatePlayer(player.Id, player);
+            }
+            catch (Exception ex)
+            {
+                result = false;
+            }
+            logger.LogInformation("Exited in the method UpdatePlayerAsync");
+            return result;
+        }
+
+        [GraphQLMetadata("deletePlayer")]
+        public async Task<bool> DeletePlayerAsync(PlayerDTO playerToDelete, [Service] IDataManager context, [Service] IMapper mapper, [Service] ILogger<GameMutation> logger)
+        {
+            bool result = true;
+            logger.LogInformation("Entered in the method DeletePlayerAsync with parameters : " + playerToDelete);
+            try
+            {
+                var player = mapper.Map<Player>(playerToDelete);
+                player.Image = "";
+                return await context.DeletePlayer(player);
+            }
+            catch (Exception ex)
+            {
+                result = false;
+            }
+            logger.LogInformation("Exited in the method DeletePlayerAsync");
+            return result;
+        }
+
+        [GraphQLMetadata("updateGame")]
+        public async Task<bool> UpdateGameAsync(GameDTO gameToUpdate, [Service] IDataManager context, [Service] IMapper mapper, [Service] ILogger<GameMutation> logger, [Service] IUnitOfWork unit)
+        {
+            bool result = true;
+            logger.LogInformation("Entered in the method UpdateGameAsync with parameters : " + gameToUpdate);
+            try
+            {
+                var game = mapper.Map<Game>(gameToUpdate);
+                game.Rules = new FakeTarotRuleForApi();
+                await context.UpdateGame(game.Id, game);
+            }
+            catch (Exception ex)
+            {
+                result = false;
+            }
+            logger.LogInformation("Exited in the method UpdateGameAsync");
             return result;
         }
 
