@@ -33,6 +33,15 @@ namespace GraphQLApi.Queries
             return result;
         }
 
+        [GraphQLMetadata("players")]
+        public async Task<IEnumerable<PlayerDTO>> GetPlayers(int numberOfElementsPerPage, int pageNumber, [Service] IDataManager context, [Service] IMapper mapper, [Service] ILogger<GameQuery> logger)
+        {
+            List<Player> l = new List<Player>(await context.GetPlayers(pageNumber, numberOfElementsPerPage));
+            List<PlayerDTO> result = new List<PlayerDTO>();
+            l.ForEach(x => result.Add(mapper.Map<PlayerDTO>(x)));
+            return result;
+        }
+
         [GraphQLMetadata("game")]
         public async Task<GameDTO> GetGame(long id, [Service] IDataManager context, [Service] IMapper mapper, [Service] ILogger<GameQuery> logger)
         {

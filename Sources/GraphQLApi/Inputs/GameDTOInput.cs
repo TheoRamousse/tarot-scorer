@@ -2,5 +2,5 @@
 
 namespace GraphQLApi.Inputs
 {
-    public record GameDTOInput(DateTime date, int takerPoints, bool excuse, bool twentyOne, PlayerAndBiddingDTOInput[] players);
+    public record GameDTOInput(long Id, DateTime date, int takerPoints, bool excuse, bool twentyOne, PlayerAndBiddingDTOInput[] players);
 }

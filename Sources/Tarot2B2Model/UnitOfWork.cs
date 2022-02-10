@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TarotDB2Model
 {
-    class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly DbContext _dbContext;
 
