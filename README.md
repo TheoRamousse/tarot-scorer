@@ -35,11 +35,11 @@ Le projet est maintenant das le dossier que vous venez de créer.
 
 
 Ensuite il faut que vous installiez le nuget :  *Microsoft.EntityFrameworkCore.Sqlite* (en **version 3** la plus avancée sinon pas compatible) 
-![Image text](/Documentation/doc_images/nugetSql "Microsoft.EntityFrameworkCore.Sqlite")
+![Image text](/Documentation/doc_images/nugetSql.png "Microsoft.EntityFrameworkCore.Sqlite")
 
 et le nuget : Microsoft.EntityFrameworkCore.Design
 
-![Image text](/Documentation/doc_images/nugetDesign "Microsoft.EntityFrameworkCore.Design")
+![Image text](/Documentation/doc_images/nugetDesign.png "Microsoft.EntityFrameworkCore.Design")
 
 
 
@@ -55,7 +55,7 @@ ls
 ```
 
 Vous êtes censé obtenir ceci:
-![Image text](/Documentation/doc_images/consoleNuget "Déplacement dans la bonne solution")
+![Image text](/Documentation/doc_images/consoleNuget.png "Déplacement dans la bonne solution")
 
 
 Une fois dans cette solution taper la commande :
