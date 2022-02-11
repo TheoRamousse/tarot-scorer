@@ -61,7 +61,7 @@ namespace Model
         /// <summary>
         /// the Players and their associated bidding
         /// </summary>
-        public ReadOnlyDictionary<Player, Bidding> Players { get; private set; }
+        public ReadOnlyDictionary<Player, Bidding> Players { get; set; }
         private Dictionary<Player, Bidding> players = new Dictionary<Player, Bidding>();
 
         /// <summary>

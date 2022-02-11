@@ -58,7 +58,7 @@ namespace Model
         public string Image
         {
             get => image;
-            private set
+            set
             {
                 image = string.IsNullOrWhiteSpace(value) ? null : value;
             }

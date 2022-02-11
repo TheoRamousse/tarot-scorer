@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TarotDB
 {
-    public class SessionEntity : IEntity
+    public class SessionEntity
     {
         public long Id { get; set; }
 

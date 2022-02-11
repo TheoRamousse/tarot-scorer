@@ -24,12 +24,16 @@ namespace TarotDB2Model
 
         public virtual async Task<TEntity> FindById(object id)
         {
-            var entity = await _dbSet.FindAsync(id);
+            if ((long)id != 0)
+            {
+                var entity = await _dbSet.FindAsync(id);
+                return entity;
+            }
+            return null;
             //if(NoTracking)
             //{
             //    _dbContext.Entry(entity).State = EntityState.Detached;
             //}
-            return entity;
         }
 
         public virtual async Task<IEnumerable<TEntity>> GetItems(int index, int count)

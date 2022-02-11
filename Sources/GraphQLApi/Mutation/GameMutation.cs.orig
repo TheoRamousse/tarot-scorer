@@ -1,0 +1,46 @@
+﻿using AutoMapper;
+using GraphQL;
+using GraphQLApi.Inputs;
+using GraphQLApi.Payloads;
+using HotChocolate;
+using HotChocolate.Types;
+using HotChocolate.Types.Relay;
+using Microsoft.Extensions.Logging;
+using Model;
+using System.Threading.Tasks;
+using TarotDTO;
+
+namespace GraphQLApi.Mutation
+{
+    public class GameMutation
+    {
+        [GraphQLMetadata("addGame")]
+        public async Task<GameDTOPayload> AddGameAsync(GameDTO gameToAdd, [Service] IDataManager context, [Service] IMapper mapper, [Service] ILogger<GameMutation> logger)
+        {
+            var game = mapper.Map<Game>(gameToAdd);
+            game.Rules = new FakeTarotRuleForApi();
+            var result = await context.AddGame(game);
+
+            return null;
+        }
+
+<<<<<<< HEAD
+
+        [GraphQLMetadata("addPlayer")]
+        public async Task<PlayerDTOPayload> AddPlayerAsync(PlayerDTO playerToAdd, [Service] IDataManager context, [Service] IMapper mapper, [Service] ILogger<GameMutation> logger)
+        {
+            var result = await context.AddPlayer(mapper.Map<Player>(playerToAdd));
+
+            return null;
+=======
+        [UseMutationConvention]
+        // [Error(...)] possibilité de prendre en charge des exceptions personnalisées.
+        public async Task<GameDTOPayload> UpdateGameAsync([ID] long gameId, GameDTOInput gameToUpdate, [Service] IDataManager context, [Service] IMapper mapper, [Service] ILogger<GameMutation> logger)
+        {
+            Game gToUp = mapper.Map<Game>(gameToUpdate);
+            var resultat = await context.UpdateGame(gToUp.Id, gToUp);
+            return mapper.Map<GameDTOPayload>(resultat);
+>>>>>>> f54fd5aada460929163fce34943fcf86b6c91ec1
+        }
+    }
+}

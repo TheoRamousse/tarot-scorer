@@ -317,23 +317,23 @@ namespace TarotDB2Model
 
         public async Task<bool> AddGame(Game game)
         {
-            if(game.Id != 0) return false;
+            if (game.Id != 0) return false;
             GameEntity ge = game.ToEntity();
             GameEntity found = await UnitOfWork.Repository<GameEntity>().FindById(ge.Id);
-            if(found != null) return false;
+            if (found != null) return false;
 
             GameEntity gameEntity = game.ToEntity();
             var result = await UnitOfWork.Repository<GameEntity>().Insert(gameEntity);
 
-            foreach(var p in gameEntity.Biddings.Select(kvp => kvp.Player))
+            foreach (var p in gameEntity.Biddings.Select(kvp => kvp.Player))
             {
-                if(await UnitOfWork.Repository<PlayerEntity>().FindById(p.Id) != null)
+                if (await UnitOfWork.Repository<PlayerEntity>().FindById(p.Id) != null)
                 {
                     _dbContext.Entry(p).State = EntityState.Unchanged;
                 }
             }
 
-            if(result == null)
+            if (result == null)
             {
                 await UnitOfWork.RejectChangesAsync();
                 return false;
@@ -342,6 +342,7 @@ namespace TarotDB2Model
             await UnitOfWork.SaveChangesAsync();
             return true;
         }
+
 
         public async Task<bool> DeleteGame(Game game)
             => await DeleteGame(game.Id);
@@ -364,35 +365,35 @@ namespace TarotDB2Model
             GameEntity ge = await UnitOfWork.Repository<GameEntity>().Set.Include(g => g.Biddings)
                                                                                .ThenInclude(b => b.Player)
                                                                                .SingleOrDefaultAsync(g => g.Id == id);
-            if(ge == null)
+            if (ge == null)
                 return false;
             GameEntity ge2 = game.ToEntity();
 
             var temp = ge.Biddings.Except(ge2.Biddings, PlayerBiddingEntity.Comparer).ToList();
             var temp2 = ge2.Biddings.Except(ge.Biddings, PlayerBiddingEntity.Comparer).ToList();
 
-            foreach(var pbe in ge.Biddings)
+            foreach (var pbe in ge.Biddings)
             {
                 _dbContext.Entry<PlayerBiddingEntity>(pbe).State = EntityState.Detached;
             }
 
-            foreach(var pbe in temp)
+            foreach (var pbe in temp)
             {
                 _dbContext.Entry<PlayerBiddingEntity>(pbe).State = EntityState.Deleted;
             }
-            foreach(var pbe in temp2)
+            foreach (var pbe in temp2)
             {
                 _dbContext.Entry<PlayerBiddingEntity>(pbe).State = EntityState.Added;
             }
 
-            foreach(var property in typeof(GameEntity).GetProperties()
+            foreach (var property in typeof(GameEntity).GetProperties()
                                                         .Where(pi => pi.CanWrite
                                                                 && pi.Name != nameof(GameEntity.Id)))
             {
                 property.SetValue(ge, property.GetValue(ge2));
             }
-                                                        
-            if(await UnitOfWork.Repository<GameEntity>().Update(ge) == null)
+
+            if (await UnitOfWork.Repository<GameEntity>().Update(ge) == null)
             {
                 await UnitOfWork.RejectChangesAsync();
                 return false;
@@ -400,5 +401,6 @@ namespace TarotDB2Model
             await UnitOfWork.SaveChangesAsync();
             return true;
         }
+
     }
 }

@@ -1,7 +1,11 @@
+using GraphQLApi.Controllers;
+using GraphQLApi.Mutation;
+using GraphQLApi.Queries;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -13,6 +17,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TarotDB;
+using TarotDB2Model;
 
 namespace GraphQLApi
 {
@@ -28,13 +34,14 @@ namespace GraphQLApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IDataManager, Stub>();
+            services.AddScoped<DbContext, TarotContext>();
+            services.AddSingleton<IDataManager, TarotDBManager>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddAutoMapper(typeof(Startup));
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "GraphQLApi", Version = "v1" });
-            });
+            services.AddGraphQLServer().AddQueryType<GameQuery>();
+            services.AddGraphQLServer().AddMutationType<GameMutation>();
+            services.AddDbContext<TarotContext>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,20 +49,25 @@ namespace GraphQLApi
         {
             if (env.IsDevelopment())
             {
+                app.UseGraphQLPlayground();
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GraphQLApi v1"));
             }
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            using(var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                using(var context = serviceScope.ServiceProvider.GetService<DbContext>())
+                {
+                    context.Database.Migrate();
+                }
+            }
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapGraphQL();
             });
         }
     }
