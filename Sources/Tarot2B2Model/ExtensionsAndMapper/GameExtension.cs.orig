@@ -18,9 +18,20 @@ namespace TarotDB2Model
             {
                 if (model.Rules != null)
                 {
+<<<<<<< HEAD
+                    Id = model.Id,
+                    DateTime = model.Date,
+                    Chelem = model.Chelem.ToEntity(),
+                    Poignée = model.Poignée.ToEntity(),
+                    Excuse = model.Excuse,
+                    Petit = model.PetitResult.ToEntity(),
+                    TakerPoints = model.TakerPoints,
+                    TwentyOne = model.TwentyOne,
+                    Rules = model.Rules != null ? model.Rules.Name : null
+                };
+=======
                     result = new GameEntity
                     {
-
                         Id = model.Id,
                         DateTime = model.Date,
                         Chelem = model.Chelem.ToEntity(),
@@ -29,9 +40,24 @@ namespace TarotDB2Model
                         Petit = model.PetitResult.ToEntity(),
                         TakerPoints = model.TakerPoints,
                         TwentyOne = model.TwentyOne,
-                        Rules = model.Rules != null ? model.Rules.Name : null
+                        Rules = model.Rules.Name
                     };
-                };
+                }
+                else
+                {
+                    result = new GameEntity
+                    {
+                        Id = model.Id,
+                        DateTime = model.Date,
+                        Chelem = model.Chelem.ToEntity(),
+                        Poignée = model.Poignée.ToEntity(),
+                        Excuse = model.Excuse,
+                        Petit = model.PetitResult.ToEntity(),
+                        TakerPoints = model.TakerPoints,
+                        TwentyOne = model.TwentyOne
+                    };
+                }
+>>>>>>> e18df1735333c51372aba79fdde67c74ac1f706e
                 foreach(var b in model.Players)
                 {
                     result.Biddings.Add(new PlayerBiddingEntity
