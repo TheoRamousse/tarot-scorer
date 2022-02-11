@@ -93,6 +93,8 @@ namespace Model
             }
         }
 
+        public Game() { }
+
         /// <summary>
         /// constructor
         /// </summary>

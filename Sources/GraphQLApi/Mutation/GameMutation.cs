@@ -29,6 +29,7 @@ namespace GraphQLApi.Mutation
                 await context.AddGame(game);
             }catch(Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 result = false;
             }
             logger.LogInformation("Exited in the method AddGameAsync");
