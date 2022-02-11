@@ -81,6 +81,24 @@ Actuellement, nous avons réalisé les tâches suivantes pour la réalisation du
 
 ### Pour l'API REST
 ***
+Pour l'API REST nous avons la possibilité de requêter 3 DTO, respectivement game, player et session.
+Pour chaque DTO nous avons accès à la pagination, demandant le nombre d'éléments retournés (count) à partir d'un index donné:
+![Image text](/Documentation/doc_images/GraphQl/requete1.png "Requête pour les parties")
+
+De plus, nous pouvons réaliser l'ajout d'un élément en base:
+![Image text](/Documentation/doc_images/GraphQl/requete1.png "Requête pour les parties")
+
+Mais encore compter le nombre d'éléments en base:
+![Image text](/Documentation/doc_images/GraphQl/requete1.png "Requête pour les parties")
+
+Nous pouvons aussi éditer un DTO en fonction de son id :
+![Image text](/Documentation/doc_images/GraphQl/requete1.png "Requête pour les parties")
+
+Et pour finir nous pouvons supprimer un DTO en fonction de son id:
+![Image text](/Documentation/doc_images/GraphQl/requete1.png "Requête pour les parties")
+
+Comme vu ci dessus notre API REST nous permet de réaliser les opération CRUD (create / read / update / delete).
+
 ### Pour l'API GraphQL
 ***
 Nous avons la possibilité d'effectuer des requêtes personnalisées.
@@ -223,26 +241,22 @@ Raphaël Hacques
 - Thomas Bellembois
 
 # documentation à faire
+Théo:
+Description du fonctionnement la solution globale
+Dire ce qu'on a codé sur la partie serveur 
+Quelles sont les grandes étapes pour mettre en place cela (avec screen)
 
-description du fonctionnement la solution globale
-dire ce qu'on a codé sur la partie serveur 
-quelles sont les grandes étapes pour mettre en place cela 
-montrer avec des screens
-
-
-readme:
-qu'est ce que je dois demarrer sur quel protocol
-migrations
-
-schéma: 
+Mathieu: 
 expliquer la structure : pourquoi comme ça
 comment est il découper
+schéma
 
-API gateway / REST:
+Raphaël:
+Api gateway
 que va t'elle faire
 comment route elle les elements
-que couvre api rest
 
-Autres:
+Mael:
 faire séparation du readme en plusieurs documents
+création wiki
 dire ou sont les autres documents dans readme
