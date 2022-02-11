@@ -8,11 +8,11 @@ namespace TarotDTO
 {
     public class GameDTO : IDTO
     {
-        public long Id { get;  set; }
+        public long Id { get; private set; } = 0;
 
         public DateTime Date { get;  set; }
 
-        public int TakerPoints { get; set; }
+        public int TakerPoints { get;  set; }
 
         public bool? Excuse { get;  set; }
 

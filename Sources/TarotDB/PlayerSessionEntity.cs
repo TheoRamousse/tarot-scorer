@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TarotDB
 {
-    public class PlayerSessionEntity : IEntity
+    public class PlayerSessionEntity
     {
         public PlayerEntity Player { get; set; }
 
