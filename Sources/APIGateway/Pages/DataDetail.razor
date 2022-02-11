@@ -6,3 +6,6 @@
     @Id
 </h5>
 
+
+<CustomChartStatistic Title=@("Graphique des parties de "+CurrentPlayer.NickName) Subtitle="Evolution du score des parties au cours du temps" YAxisName="Nombre de points" XAxisName="Date" StartValue="@(DateTime.Parse(MinimumDate).Year)" Data="@(CurrentPlayer.Games)"></CustomChartStatistic>
+
