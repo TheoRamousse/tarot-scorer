@@ -7,7 +7,7 @@ using Utils;
 [assembly:InternalsVisibleTo("TarotDB2Model")]
 namespace TarotDB
 {
-    public class PlayerEntity : IEntity
+    public class PlayerEntity
     {
         public long Id { get; set; }
 

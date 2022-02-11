@@ -8,7 +8,7 @@ using static TarotDB2Model.EnumsMapper;
 
 namespace TarotDB2Model
 {
-    static class GameExtension
+    public static class GameExtension
     {
         public static GameEntity ToEntity(this Game model)
         {
@@ -16,7 +16,7 @@ namespace TarotDB2Model
 
             if(result == null)
             {
-                result = new GameEntity
+                if (model.Rules != null)
                 {
                     Id = model.Id,
                     DateTime = model.Date,
@@ -51,15 +51,30 @@ namespace TarotDB2Model
 
             if(result == null)
             {
-                result = new Game(entity.Id,
-                                  entity.DateTime,
-                                  RulesFactory.Create(entity.Rules),
-                                  entity.TakerPoints,
-                                  entity.Petit.ToModel(),
-                                  entity.Poignée.ToModel(),
-                                  entity.Excuse,
-                                  entity.TwentyOne,
-                                  entity.Chelem.ToModel());
+                if (entity.Rules != null)
+                {
+                    result = new Game(entity.Id,
+                                      entity.DateTime,
+                                      RulesFactory.Create(entity.Rules),
+                                      entity.TakerPoints,
+                                      entity.Petit.ToModel(),
+                                      entity.Poignée.ToModel(),
+                                      entity.Excuse,
+                                      entity.TwentyOne,
+                                      entity.Chelem.ToModel());
+                }
+                else
+                {
+                    result = new Game(entity.Id,
+                                      entity.DateTime,
+                                      null,
+                                      entity.TakerPoints,
+                                      entity.Petit.ToModel(),
+                                      entity.Poignée.ToModel(),
+                                      entity.Excuse,
+                                      entity.TwentyOne,
+                                      entity.Chelem.ToModel());
+                }
                 result.AddPlayers(entity.Biddings.Select(b => Tuple.Create(b.Player.ToModel(), b.Bidding.ToModel())).ToArray());
             }
 
