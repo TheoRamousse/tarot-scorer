@@ -110,12 +110,11 @@ namespace RestApi.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(200, Type = typeof(bool))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> Delete([FromBody] PlayerDTO dto)
+        public async Task<IActionResult> Delete(long id)
         {
             _logger.LogInformation("RestApi: Call Delete() Player", "Started");
 
-            var player = PlayerFactory.ToModel(dto);
-            bool response = await _manager.DeletePlayer(player);
+            bool response = await _manager.DeletePlayer(id);
 
             _logger.LogInformation("RestApi: Call Delete() Player", "Ended");
             if (!response)

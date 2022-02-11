@@ -113,12 +113,11 @@ namespace RestApi.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(200, Type = typeof(bool))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> Delete([FromBody] GameDTO dto)
+        public async Task<IActionResult> Delete(long id)
         {
             _logger.LogInformation("RestApi: Call Delete() Game", "Started");
 
-            var game = GameFactory.ToModel(dto);
-            bool response=await _manager.DeleteGame(game);
+            bool response=await _manager.DeleteGame(id);
 
             _logger.LogInformation("RestApi: Call Delete() Game", "Ended");
             if (!response)

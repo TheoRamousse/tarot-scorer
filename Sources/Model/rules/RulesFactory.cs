@@ -22,7 +22,7 @@ namespace Model
         /// <returns>rules if the name is known, null if not</returns>
         public static IRules Create(string rulesName)
         {
-            if(!factory.TryGetValue(rulesName, out Func<IRules> value))
+            if(rulesName == null||!factory.TryGetValue(rulesName, out Func<IRules> value))
                 return null;
 
             return value();

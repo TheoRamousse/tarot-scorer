@@ -26,7 +26,7 @@ namespace TarotDB2Model
                     Petit = model.PetitResult.ToEntity(),
                     TakerPoints = model.TakerPoints,
                     TwentyOne = model.TwentyOne,
-                    Rules = model.Rules.Name
+                    Rules = model.Rules != null ? model.Rules.Name : null
                 };
                 foreach(var b in model.Players)
                 {

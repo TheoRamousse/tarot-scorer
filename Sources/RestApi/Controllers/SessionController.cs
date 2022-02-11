@@ -101,12 +101,11 @@ namespace RestApi.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(200, Type = typeof(bool))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> Delete([FromBody] SessionDTO dto)
+        public async Task<IActionResult> Delete(long id)
         {
             _logger.LogInformation("RestApi: Call Delete() Session", "Started");
 
-            var session = SessionFactory.ToModel(dto);
-            bool response = await _manager.DeleteSession(session);
+            bool response = await _manager.DeleteSession(id);
 
             _logger.LogInformation("RestApi: Call Delete() Session", "Ended");
             if (!response)

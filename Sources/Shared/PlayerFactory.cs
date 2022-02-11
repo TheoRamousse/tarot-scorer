@@ -32,7 +32,9 @@ namespace Shared
             return new PlayerDTO() { 
                 Id = model.Id, 
                 FirstName = model.FirstName, 
-                LastName = model.LastName, };
+                LastName = model.LastName,
+                NickName = model.NickName
+            };
         }
 
         public static PlayerAndBiddingDTO ToDTO(Player model,Bidding bidding)
