@@ -116,7 +116,6 @@ namespace Model
             Id = id;
         }
 
-        public Game() { }
 
         /// <summary>
         /// constructor

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using TarotDB;
 
 namespace TarotDB2Model
 {
@@ -69,9 +70,9 @@ namespace TarotDB2Model
             return result;
         }
 
-        public IGenericRepository<TEntity> Repository<TEntity>() where TEntity : class
+        public IGenericRepository<T> Repository<T>() where T : class
         {
-            return new GenericRepository<TEntity>(_dbContext);
+            return new GenericRepository<T>(_dbContext);
         }
     }
 

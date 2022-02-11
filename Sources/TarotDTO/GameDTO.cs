@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TarotDTO
 {
-    public class GameDTO
+    public class GameDTO : IDTO
     {
         public long Id { get; private set; } = 0;
 
@@ -18,6 +18,6 @@ namespace TarotDTO
 
         public bool? TwentyOne { get;  set; }
 
-        public List<PlayerAndBiddingDTO> Players { get; set; } = new List<PlayerAndBiddingDTO>();
+        public List<PlayerAndBiddingDTO> Players { get; set; }
     }
 }

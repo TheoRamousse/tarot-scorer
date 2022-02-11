@@ -1,0 +1,15 @@
+image: mcr.microsoft.com/dotnet/sdk:5.0
+
+build:
+  stage: build
+  tags:
+    - docker
+  before_script:
+    - cd ./sources
+    - dotnet restore
+  script:
+    - dotnet build -c Release --no-restore
+    - dotnet publish -c Release --no-restore -o $CI_PROJECT_DIR/build/release
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/build/release
