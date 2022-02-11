@@ -20,7 +20,7 @@ namespace APIGateway
         [JsonPropertyName("NickName")]
         public string NickName { get; set; }
 
-        [JsonPropertyName("ListeDesParties")]
+        [JsonPropertyName("ListesDesParties")]
         public List<GameSimplifiedEntity> ListeDesParties { get; set; }
     }
 }

@@ -56,7 +56,7 @@
                             <div style="float:right;">
                                 @if (IsViewable)
                                 {
-                                    <a href="@(Navigator.BaseUri + OnView + "/" + element.ToArray()[2].Value)">
+                                    <a href="@(Navigator.BaseUri + OnView + "/" + element["Id"].ToString())">
                                         <button type="button" class="btn btn-info" style="margin-left: 3rem;">
                                             Voir
                                         </button>
@@ -64,7 +64,7 @@
                                 }
                                 @if (IsEditable)
                                 {
-                                    <a href="@(Navigator.BaseUri + OnEdit + "/" + element.ToArray()[2].Value)">
+                                    <a href="@(Navigator.BaseUri + OnEdit + "/" + element["Id"].ToString())">
                                         <button type="button" class="btn btn-warning" style="margin-left: 3rem;">
                                             Editer
                                         </button>

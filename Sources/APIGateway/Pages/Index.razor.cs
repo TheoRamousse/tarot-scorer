@@ -7,22 +7,25 @@ using System.Threading.Tasks;
 using APIGateway.Entity;
 using APIGateway.Model;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace APIGateway.Pages
 {
     public partial class Index
     {
         [Inject]
-        public HttpClient Http { get; set; }
+        public IDataService DataManager { get; set; }
 
         public async Task<List<Data>> FetchDataWithNumberOfElementsAsync(int numberOfElements, int page)
         {
 
 
-            List<Data> result = new List<Data>();
+            /*List<Data> result = new List<Data>();
             
-            var jsonDeserialize = await Http.GetFromJsonAsync<PlayerEntity[]>("sample-data/player.json");
-            foreach(var element in jsonDeserialize)
+            var jsonDeserializePlayer = await Http.GetFromJsonAsync<PlayerEntity[]>("sample-data/player.json");
+            var jsonDeserializeGame = await Http.GetFromJsonAsync<GameEntity[]>("sample-data/game.json");
+            client.InvokeVoidAsync("console.log", jsonDeserializePlayer);
+            foreach (var element in jsonDeserializePlayer)
             {
                 List<GameEntity> lesGames = new List<GameEntity>();
                 Data d = new Data();
@@ -32,18 +35,31 @@ namespace APIGateway.Pages
                 d.Add("NickName", element.NickName);
                 foreach (var e in element.ListeDesParties)
                 {
-                    var jsonDes = await Http.GetFromJsonAsync<GameEntity[]>("sample-data/game.json");
-                    foreach (var elem in jsonDes)
+                    foreach (var elem in jsonDeserializeGame)
                     {
-                        lesGames.Add(elem);
+                        if(e.Id == elem.Id)
+                            lesGames.Add(elem);
                     }
                 }
                 d.Add("_ignoreThisPartOfDataOrConsequences", lesGames);
                 result.Add(d);
             }
-            return result.Skip(page*numberOfElements).Take(numberOfElements).ToList();
+            return result.Skip(page*numberOfElements).Take(numberOfElements).ToList();*/
 
-            
+            List<Data> result = new List<Data>();
+
+            foreach (var element in (await DataManager.GetPlayers(numberOfElements, page))){
+                Data d = new Data();
+                d.Add("Id", element.Id);
+                d.Add("FirsName", element.FirstName);
+                d.Add("LastName", element.LastName);
+                d.Add("NickName", element.NickName);
+            }
+
+
+            return result;
+
+
 
             /*List<Data> result = new List<Data>();
             Data data1 = new Data();

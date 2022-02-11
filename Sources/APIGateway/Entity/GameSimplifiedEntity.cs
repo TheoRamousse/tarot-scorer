@@ -5,6 +5,6 @@ namespace APIGateway
     public class GameSimplifiedEntity
     {
         [JsonPropertyName("GameId")]
-        long Id { get; set; }
+        public long Id { get; set; }
     }
 }

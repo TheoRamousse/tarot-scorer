@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using APIGateway.Model;
+using APIGateway.Entity;
 
 namespace APIGateway.Shared
 {
@@ -29,7 +30,7 @@ namespace APIGateway.Shared
         public String XAxisName { get; set; }
 
         [Parameter]
-        public uint[] Data { get; set; }
+        public GameEntity[] Data { get; set; }
 
 
         public static bool IsDataSelected { get; set; } = false;
