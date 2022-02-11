@@ -317,23 +317,23 @@ namespace TarotDB2Model
 
         public async Task<bool> AddGame(Game game)
         {
-            if(game.Id != 0) return false;
+            if (game.Id != 0) return false;
             GameEntity ge = game.ToEntity();
             GameEntity found = await UnitOfWork.Repository<GameEntity>().FindById(ge.Id);
-            if(found != null) return false;
+            if (found != null) return false;
 
             GameEntity gameEntity = game.ToEntity();
             var result = await UnitOfWork.Repository<GameEntity>().Insert(gameEntity);
 
-            foreach(var p in gameEntity.Biddings.Select(kvp => kvp.Player))
+            foreach (var p in gameEntity.Biddings.Select(kvp => kvp.Player))
             {
-                if(await UnitOfWork.Repository<PlayerEntity>().FindById(p.Id) != null)
+                if (await UnitOfWork.Repository<PlayerEntity>().FindById(p.Id) != null)
                 {
                     _dbContext.Entry(p).State = EntityState.Unchanged;
                 }
             }
 
-            if(result == null)
+            if (result == null)
             {
                 await UnitOfWork.RejectChangesAsync();
                 return false;
@@ -342,6 +342,7 @@ namespace TarotDB2Model
             await UnitOfWork.SaveChangesAsync();
             return true;
         }
+
 
         public async Task<bool> DeleteGame(Game game)
             => await DeleteGame(game.Id);
@@ -359,7 +360,7 @@ namespace TarotDB2Model
             return true;
         }
 
-        public async Task<Game> UpdateGame(long id, Game game)
+        public async Task<bool> UpdateGame(long id, Game game)
         {
             GameEntity ge = await UnitOfWork.Repository<GameEntity>().Set.Include(g => g.Biddings)
                                                                                .ThenInclude(b => b.Player)
@@ -395,10 +396,10 @@ namespace TarotDB2Model
             if (await UnitOfWork.Repository<GameEntity>().Update(ge) == null)
             {
                 await UnitOfWork.RejectChangesAsync();
-                return null;
+                return false;
             }
             await UnitOfWork.SaveChangesAsync();
-            return result.ToModel();
+            return true;
         }
 
     }
