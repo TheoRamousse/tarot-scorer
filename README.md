@@ -24,6 +24,7 @@ Il faut **visualstudio** au minimum VS2019 : https://visualstudio.microsoft.com/
 Il vous faut **git**, pour récuperer le projet:
 
 -créer un dossier personnel faites clic droit dessus puis cliquez sur "git bash here"
+<br/>
 ![Image text](/Documentation/doc_images/git.png "git bash here") 
 
 Puis écrire la comande suivante:
@@ -35,17 +36,17 @@ Le projet est maintenant das le dossier que vous venez de créer.
 
 
 Ensuite il faut que vous installiez le nuget :  *Microsoft.EntityFrameworkCore.Sqlite* (en **version 3** la plus avancée sinon pas compatible) 
-
+<br/>
 ![Image text](/Documentation/doc_images/nugetSql.png "Microsoft.EntityFrameworkCore.Sqlite")
 
-et le nuget : Microsoft.EntityFrameworkCore.Design
-
+Et le nuget : Microsoft.EntityFrameworkCore.Design
+<br/>
 ![Image text](/Documentation/doc_images/nugetDesign.png "Microsoft.EntityFrameworkCore.Design")
 
 
 
 Après cela rendez vous sur la console de gestionnaire de packages.
-
+<br/>
 ![Image text](/Documentation/doc_images/gestionnaireConsole.png "Accès à la console de gestionnaire de package")
 
 Une fois dedans rendez vous sur le projet TarotDB avec cette commande:
@@ -58,6 +59,7 @@ ls
 ```
 
 Vous êtes censé obtenir ceci:
+<br/>
 ![Image text](/Documentation/doc_images/consoleNuget.png "Déplacement dans la bonne solution")
 
 
@@ -83,50 +85,58 @@ Actuellement, nous avons réalisé les tâches suivantes pour la réalisation du
 ***
 Pour l'API REST nous avons la possibilité de requêter 3 DTO, respectivement game, player et session.
 Pour chaque DTO nous avons accès à la pagination, demandant le nombre d'éléments retournés (count) à partir d'un index donné:
+<br/>
 ![Image text](/Documentation/doc_images/GraphQl/requete1.png "Requête pour les parties")
 
 De plus, nous pouvons réaliser l'ajout d'un élément en base:
+<br/>
 ![Image text](/Documentation/doc_images/GraphQl/requete1.png "Requête pour les parties")
 
 Mais encore compter le nombre d'éléments en base:
+<br/>
 ![Image text](/Documentation/doc_images/GraphQl/requete1.png "Requête pour les parties")
 
 Nous pouvons aussi éditer un DTO en fonction de son id :
+<br/>
 ![Image text](/Documentation/doc_images/GraphQl/requete1.png "Requête pour les parties")
 
 Et pour finir nous pouvons supprimer un DTO en fonction de son id:
+<br/>
 ![Image text](/Documentation/doc_images/GraphQl/requete1.png "Requête pour les parties")
 
 Comme vu ci dessus notre API REST nous permet de réaliser les opération CRUD (create / read / update / delete).
 
 ### Pour l'API GraphQL
 ***
-Nous avons la possibilité d'effectuer des requêtes personnalisées.
-Voici ci dessous un **exemple de requête** que nous pouvons effectuer : 
-![Image text](/Documentation/doc_images/GraphQl/requete1.png "Requête pour les parties")
 
-Les requêtes vont être **modulables** en fonctions des envies de nos différents utilisateurs, sur cette exemple la **pagination** (nombre d'éléments par page) est fixé sur 1 (numberOfElementsPerPage:**1**) et nous débutons au **premier élément** de nos données (pageNumber:**0**) mais l'utilisateur pourra choisir à quelle page il veut débuter.
+Les requêtes GraphQL ont la particularité d'être **modulables** en fonction des informations que l'utilisateur souhaite récupérer. Sur l'exemple ci-dessous, la requête permet la **pagination** (nombre d'éléments par page / la page souhaitée). Ici, nous souhaitons afficher 1 seul élement(numberOfElementsPerPage:**1**) et nous souhaitons récupérer la **premier page** (pageNumber:**0**). Ansi, l'utilisateur pourra choisir à quelle page il veut débuter : 
+<br/>
 
-De plus les champs présent ici dans la requête ne sont pas fixes, en effet on peut les enlever ou bien en ajouter dans les champs disponibles ([**Voir les champs**](#champs)).
+//Coller l'image de la requête avec pagination pour les games
 
-Voici la **réponse obtenue avec la requête ci dessus** :
-![Image text](/Documentation/doc_images/GraphQl/reponse1.png "Reponse pour les parties")
+Et voici le résultat obtenu :
+</br>
+
+//Coller l'image de la réponse pour les games
+
+De plus, les champs présents ici dans la requête ne sont pas fixes, en effet on peut les enlever ou bien en ajouter dans les champs disponibles ([**Voir les champs**](#champs)).
 
 <a name="champs"></a>
-Comme préciser ci dessus, l'utilisateur va pouvoir séléctionner les champs dont il a besoin.
 Voici les champs disponibles:
 
 -**Pour les joueurs:**
+<br/>
 ![Image text](/Documentation/doc_images/GraphQl/champsPlayer.png "Champs pour les joueurs")
 
 Les informations disponibles sur les joueurs sont: son identifiant, son prénom, son nom et son surnom.
 
 -**Pour les parties:**
+<br/>
 ![Image text](/Documentation/doc_images/GraphQl/champsGame.png "Champs pour les parties")
 
 Les informations disponibles sur les parties sont: son identifiant , la date de la partie, le TakerPoints , l'excuse , le vingt et un et la liste de joueurs avec leur bidding correspondant.
 Pour cette liste nous avons de même la possibilité de choisir les champs voulus:
-
+<br/>
 ![Image text](/Documentation/doc_images/GraphQl/champsPlayer&Bidding.png "Champs pour les joueurs et leur Bidding")
 
 Les informations disponibles ici sont un joueur(vu ci dessus) et le bidding.
@@ -145,7 +155,7 @@ Dans l'état actuel de notre projet, nous avons seulement des classes de test et
 ![Image text](/Documentation/doc_images/tests/generation.png "Exécution des tests")  
 Lorsque l'explorateur de tests est ouvert vous pouvez alors séléctionner vous même le test à éxécuter.
 Si le test retourne le résultat attendu alors il affiche un cercle vert sinon il affiche un cercle rouge.
-
+<br/>
 ![Image text](/Documentation/doc_images/tests/selection.png "Selection de tests")  
 
 ***
