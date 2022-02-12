@@ -109,43 +109,49 @@ Comme vu ci dessus notre API REST nous permet de réaliser les opération CRUD (
 ### Pour l'API GraphQL
 ***
 
-Les requêtes GraphQL ont la particularité d'être **modulables** en fonction des informations que l'utilisateur souhaite récupérer. Sur l'exemple ci-dessous, la requête permet la **pagination** (nombre d'éléments par page / la page souhaitée). Ici, nous souhaitons afficher 1 seul élement(numberOfElementsPerPage:**1**) et nous souhaitons récupérer la **premier page** (pageNumber:**0**). Ansi, l'utilisateur pourra choisir à quelle page il veut débuter : 
+Les requêtes GraphQL ont la particularité d'être **modulables** en fonction des informations que l'utilisateur souhaite récupérer. Sur l'exemple ci-dessous, la requête permet la **pagination** (nombre d'éléments par page / la page souhaitée). Ici, nous souhaitons afficher 15 éléments (numberOfElementsPerPage:**15**) et nous souhaitons récupérer la **première page** (pageNumber:**0**). Ansi, l'utilisateur pourra choisir à quelle page il veut débuter. Voici l’exemple permettant de liste les parties créées : 
 <br/>
-
-//Coller l'image de la requête avec pagination pour les games
+<br/>
+![Image text](/Documentation/doc_images/GraphQl/requeteGame.png "Requête pour les parties")
+<br/>
+<br/>
 
 Et voici le résultat obtenu :
 </br>
+</br>
 
-//Coller l'image de la réponse pour les games
+</br>
+</br>
 
-De plus, les champs présents ici dans la requête ne sont pas fixes, en effet on peut les enlever ou bien en ajouter dans les champs disponibles ([**Voir les champs**](#champs)).
+Seuls 2 parties ont été affichées car notre base de données n’en contenait que deux.
+
+Dans cette requête, j’ai affiché tous les champs possibles pour une partie mais libre à vous de choisir les champs que vous souhaitez récupérer ([**Voir les champs**](#champs)).
 
 <a name="champs"></a>
+
+
+
 Voici les champs disponibles:
 
 -**Pour les joueurs:**
 <br/>
 ![Image text](/Documentation/doc_images/GraphQl/champsPlayer.png "Champs pour les joueurs")
 
-Les informations disponibles sur les joueurs sont: son identifiant, son prénom, son nom et son surnom.
+Les informations disponibles pour les joueurs sont: son identifiant, son prénom, son nom et son pseudo.
 
 -**Pour les parties:**
 <br/>
 ![Image text](/Documentation/doc_images/GraphQl/champsGame.png "Champs pour les parties")
 
-Les informations disponibles sur les parties sont: son identifiant , la date de la partie, le TakerPoints , l'excuse , le vingt et un et la liste de joueurs avec leur bidding correspondant.
+Les informations disponibles pour les parties sont: son identifiant , la date de la partie, le TakerPoints , l'excuse , le vingt et un et la liste de joueurs avec leur bidding correspondant.
+
 Pour cette liste nous avons de même la possibilité de choisir les champs voulus:
 <br/>
 ![Image text](/Documentation/doc_images/GraphQl/champsPlayer&Bidding.png "Champs pour les joueurs et leur Bidding")
 
-Les informations disponibles ici sont un joueur(vu ci dessus) et le bidding.
+Les informations disponibles ici sont un joueur(vu ci-dessus) et le bidding.
 
-
-Grâce à ces différents champs et en suivant l'exemple les utilisateurs pourrons requêter notre API GraphQL en ne prenant que les champs dont ils ont besoin.
-
-[**Des tests à faire ?**](#GraphQLRequest)
-
+Grâce à ces différents champs et en suivant l'exemple, les utilisateurs pourrons requêter notre API GraphQL en ne prenant que les champs dont ils ont besoin.
 
 # Running the tests
 
@@ -168,20 +174,19 @@ Ensuite **il faut vous rendre sur le lien** : http://localhost:5003/ui/playgroun
 
 **Taper vos requêtes à gauche** (comme vu ci dessus avec l'exemple de requête) et cliquez ensuite sur le bouton **"play"**, si votre requête est bien écrite alors vous verrez une **réponse cohérente à droite du site**.
 
-
 # Why we choose these API?
 
 ### GraphQL :
 Lors des différentes requêtes que nos utilisateur vont effectuer, nous n'avons pas la certitude des données que ces derniers veulent récupérer.
-En effet **GraphQL** est une **API** permettant de pallier ce problème grace aux multiples avantages qu'il nous offre :
+En effet **GraphQL** est une **API** permettant de pallier ce problème grâce aux multiples avantages qu'il nous offre :
 
 - **On obtient toujours le résultat qu’on attend**, autrement dit il aide à prévoir les données reçues ainsi que la structure de ces dernières. Cela simplifie le traitement des données que le serveur renvoie et permet de les faire consommer par l’application à laquelle on les envoies.
 
-- **Le serveur sait exactement quelles données on veut voir**, en ayant une structure claire des objets et des champs possibles qui peuvent être interrogés, grace à cela le serveur saura toujours ce qu’il est censé renvoyer. S’il y a une erreur dans la requête, elle ne sera pas validée et l’utilisateur sera invité à envoyer un message d’erreur descriptif qui permettra un dépannage rapide.
+- **Le serveur sait exactement quelles données on veut voir**, en ayant une structure claire des objets et des champs possibles qui peuvent être interrogés, grace à cela le serveur saura toujours ce qu’il est censé renvoyer. S’il y a une erreur dans la requête, elle ne sera pas validée et l’utilisateur sera averti que sa requête est incorrecte.
 
-
-Comme spécifié ci-dessus **GraphQL** nous permet de faire des **requêtes très spécialisées** (seulement ce que l'utilisateur veut savoir), ce qui engendre un **volume de transfert de données plus faible** signifie également une **connexion plus rapide** et de **meilleurs temps de chargement** pour les utilisateurs.
+Comme spécifié ci-dessus **GraphQL** nous permet de faire des **requêtes très spécialisées** (seulement ce que l'utilisateur veut savoir), ce qui engendre un **volume de transfert de données plus faible** qui signifie également une **connexion plus rapide** et de **meilleurs temps de chargement** pour les utilisateurs.
 C'est bénéfique pour l'utilisateur et pour l'éfficacité de notre application d'avoir de meilleures performances.
+
  
 ### REST :
 
