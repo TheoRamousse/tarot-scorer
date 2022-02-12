@@ -54,6 +54,7 @@ namespace APIGateway.Pages
                 d.Add("FirsName", element.FirstName);
                 d.Add("LastName", element.LastName);
                 d.Add("NickName", element.NickName);
+                result.Add(d);
             }
 
 

@@ -1,11 +1,7 @@
 ﻿@page "/datadetail/{Id:long}"
 
-<h3>DataDetail</h3>
-
-<h5>
-    @Id
-</h5>
+<h3>@("Détail des parties du joueur "+ CurrentPlayer.NickName +" :")</h3>
 
 
-<CustomChartStatistic Title=@("Graphique des parties de "+CurrentPlayer.NickName) Subtitle="Evolution du score des parties au cours du temps" YAxisName="Nombre de points" XAxisName="Date" StartValue="@(DateTime.Parse(MinimumDate).Year)" Data="@(CurrentPlayer.Games)"></CustomChartStatistic>
+<CustomChartStatistic Title=@("Graphique des parties de "+CurrentPlayer.NickName) Subtitle="Evolution du score des parties au cours du temps" YAxisName="Nombre de points" XAxisName="Date" Data="@(CurrentPlayer.Games)"></CustomChartStatistic>
 

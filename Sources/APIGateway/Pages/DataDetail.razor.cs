@@ -17,20 +17,12 @@ namespace APIGateway.Pages
         public IDataService DataManager { get; set; }
 
         private PlayerFullEntity CurrentPlayer;
-        private string MinimumDate;
 
-        protected override async Task OnInitializedAsync()
+        protected override async Task OnParametersSetAsync()
         {
             CurrentPlayer = await DataManager.GetPlayerById(Id);
-
-            MinimumDate = CurrentPlayer.Games[0].Date;
-            foreach (var element in CurrentPlayer.Games)
-            {
-                if(String.CompareOrdinal(element.Date,MinimumDate) <0)
-                {
-                    MinimumDate = element.Date;
-                }
-            }
         }
+
+        
     }
 }
