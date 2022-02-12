@@ -34,7 +34,8 @@ git clone https://gitlab.iut-clermont.uca.fr/mabouvard2/tarot-scorer.git
 
 Le projet est maintenant dans le dossier que vous venez de créer.
 
-*Cette partie est inutile si le projet GraphQL contient déjà la base de données en .db*
+**Cette partie est inutile si le projet GraphQL contient déjà la base de données en .db :**
+<br/>
 <br/>
 Ensuite il faut que vous installiez le nuget :  *Microsoft.EntityFrameworkCore.Sqlite* (en **version 3** la plus avancée sinon pas compatible) 
 <br/>
