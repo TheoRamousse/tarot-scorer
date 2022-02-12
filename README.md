@@ -76,7 +76,7 @@ Actuellement, nous avons réalisé les tâches suivantes pour la réalisation du
 
 - API Gateway
 
-- API GraphQL
+- API GraphQL : Opérations CRUD pour les joueurs et les parties. CREATE, UPDATE et DELETE retournent un booléen qui indique si la requête a été effectuée en base
 
 
 # Usage
@@ -111,24 +111,18 @@ Comme vu ci dessus notre API REST nous permet de réaliser les opération CRUD (
 
 Les requêtes GraphQL ont la particularité d'être **modulables** en fonction des informations que l'utilisateur souhaite récupérer. Sur l'exemple ci-dessous, la requête permet la **pagination** (nombre d'éléments par page / la page souhaitée). Ici, nous souhaitons afficher 15 éléments (numberOfElementsPerPage:**15**) et nous souhaitons récupérer la **première page** (pageNumber:**0**). Ansi, l'utilisateur pourra choisir à quelle page il veut débuter. Voici l’exemple permettant de liste les parties créées : 
 <br/>
-<br/>
-![Image text](/Documentation/doc_images/GraphQl/requeteGame.png "Requête pour les parties")
-<br/>
+![Image text](/Documentation/doc_images/GraphQL/requeteGame.png "Requête pour les parties")
 <br/>
 
 Et voici le résultat obtenu :
-</br>
-</br>
+<br/>
+![Image text](/Documentation/doc_images/GraphQL/reponseRequeteGame.png "Réponse requête pour les parties")
+<br/>
 
-</br>
-</br>
-
-Seuls 2 parties ont été affichées car notre base de données n’en contenait que deux.
-
+Seuls quelques parties ont été affichées car notre base de données n’en contenait pas plus.
 Dans cette requête, j’ai affiché tous les champs possibles pour une partie mais libre à vous de choisir les champs que vous souhaitez récupérer ([**Voir les champs**](#champs)).
 
 <a name="champs"></a>
-
 
 
 Voici les champs disponibles:
@@ -136,22 +130,57 @@ Voici les champs disponibles:
 -**Pour les joueurs:**
 <br/>
 ![Image text](/Documentation/doc_images/GraphQl/champsPlayer.png "Champs pour les joueurs")
-
+<br/>
 Les informations disponibles pour les joueurs sont: son identifiant, son prénom, son nom et son pseudo.
 
 -**Pour les parties:**
 <br/>
 ![Image text](/Documentation/doc_images/GraphQl/champsGame.png "Champs pour les parties")
-
+<br/>
 Les informations disponibles pour les parties sont: son identifiant , la date de la partie, le TakerPoints , l'excuse , le vingt et un et la liste de joueurs avec leur bidding correspondant.
 
 Pour cette liste nous avons de même la possibilité de choisir les champs voulus:
 <br/>
 ![Image text](/Documentation/doc_images/GraphQl/champsPlayer&Bidding.png "Champs pour les joueurs et leur Bidding")
+<br/>
 
 Les informations disponibles ici sont un joueur(vu ci-dessus) et le bidding.
 
 Grâce à ces différents champs et en suivant l'exemple, les utilisateurs pourrons requêter notre API GraphQL en ne prenant que les champs dont ils ont besoin.
+
+Voici les autres requêtes correspondant aux opérations CRUD standards pour les parties et pour les joueurs (nous n'avons pas affiché les réponses aux requêtes DELETE, UPDATE et CREATE car elles retournent simplement un booléen qui indique si la requête a fonctionnée ou non): 
+
+- Affichage des joueurs avec pagination
+<br/>
+![Image text](/Documentation/doc_images/GraphQL/requeteUser.png "Champs pour les parties")
+<br/>
+<br/>
+![Image text](/Documentation/doc_images/GraphQL/reponseRequeteUser.png "Champs pour les parties")
+<br/>
+- Ajout d'un joueur
+<br/>
+![Image text](/Documentation/doc_images/GraphQL/addPlayer.png "Champs pour les parties")
+<br/>
+- Suppression d'un joueur (tous les champs doivent obligatoirement être renseignés mais seul l'ID est utilisé donc vous pouvez mettre ce que vous voulez dans les autres champs)
+<br/>
+![Image text](/Documentation/doc_images/GraphQL/deletePlayer.png "Champs pour les parties")
+<br/>
+- Mise à jour d'un joueur
+<br/>
+![Image text](/Documentation/doc_images/GraphQL/updatePlayer.png "Champs pour les parties")
+<br/>
+- Ajout d'une partie (tous les champs doivent obligatoirement être renseignés pour le joueur mais seul l'ID est utilisé donc vous pouvez mettre ce que vous voulez dans les autres champs)
+<br/>
+![Image text](/Documentation/doc_images/GraphQL/ajoutGame.png "Champs pour les parties")
+<br/>
+- Suppression d'une partie (tous les champs doivent obligatoirement être renseignés mais seul l'ID est utilisé donc vous pouvez mettre ce que vous voulez dans les autres champs)
+<br/>
+![Image text](/Documentation/doc_images/GraphQL/suppressionGame.png "Champs pour les parties")
+<br/>
+- Mise à jour d'une partie
+<br/>
+![Image text](/Documentation/doc_images/GraphQL/updateGame.png "Champs pour les parties")
+<br/>
 
 # Running the tests
 
@@ -173,6 +202,8 @@ Pour effectuer des requêtes de tests il faut tout d'abord **lancer la solution 
 Ensuite **il faut vous rendre sur le lien** : http://localhost:5003/ui/playground .
 
 **Taper vos requêtes à gauche** (comme vu ci dessus avec l'exemple de requête) et cliquez ensuite sur le bouton **"play"**, si votre requête est bien écrite alors vous verrez une **réponse cohérente à droite du site**.
+
+Nous n'avons pas eu le temps d'implémenter les tests unitaires pour l'API GraphQL car l'implémentation des opérations CRUD ont été difficiles.
 
 # Why we choose these API?
 
