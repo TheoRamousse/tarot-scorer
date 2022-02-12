@@ -113,5 +113,23 @@ namespace GraphQLApi.Mutation
             return result;
         }
 
+        [GraphQLMetadata("deleteGame")]
+        public async Task<bool> DeleteGameAsync(GameDTO gameToDelete, [Service] IDataManager context, [Service] IMapper mapper, [Service] ILogger<GameMutation> logger)
+        {
+            bool result = true;
+            logger.LogInformation("Entered in the method DeleteGameAsync with parameters : " + gameToDelete);
+            try
+            {
+                var game = mapper.Map<Game>(gameToDelete);
+                return await context.DeleteGame(game);
+            }
+            catch (Exception ex)
+            {
+                result = false;
+            }
+            logger.LogInformation("Exited in the method DeleteGameAsync");
+            return result;
+        }
+
     }
 }
