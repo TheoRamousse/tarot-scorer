@@ -24,30 +24,55 @@ namespace APIGateway.Shared
         public String YAxisName { get; set; }
 
         [Parameter]
-        public int StartValue { get; set; }
-
-        [Parameter]
         public String XAxisName { get; set; }
 
         [Parameter]
         public GameEntity[] Data { get; set; }
 
+        private static GameEntity[] StaticData;
 
-        public static bool IsDataSelected { get; set; } = false;
+        private GameEntity SelectedGame = null;
 
+        private static Func<uint, Task> MyNonStaticMethod;
+
+
+        private double[] YData;
+        private string[] XData;
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)
-                await Js.InvokeVoidAsync("computeChart", Title, Subtitle, XAxisName, YAxisName, Data, StartValue);
+            {
+                MyNonStaticMethod = ChangeSelectedGame;
+                StaticData = Data;
+                YData = new double[Data.Length];
+                XData = new string[Data.Length];
+
+                int i = 0;
+                foreach (var game in Data.OrderByDescending(game => game.Date).Reverse())
+                {
+                    YData[i] = game.TakerPoints;
+                    XData[i] = game.Date.ToString();
+                    i++;
+                }
+                await Js.InvokeVoidAsync("computeChart", Title, Subtitle, XAxisName, YAxisName, YData, XData);
+            }
         }
 
 
         [JSInvokable("OnPointSelected")]
         public static async Task AddTextToTextHistory(uint index)
         {
-            IsDataSelected = true;
-            Console.WriteLine(index);
+            await MyNonStaticMethod.Invoke(index);
+
+        }
+
+        private async Task ChangeSelectedGame(uint index)
+        {
+            SelectedGame = StaticData[index];
+            Console.WriteLine(SelectedGame.Id);
+            StateHasChanged();
+
         }
     }
 }

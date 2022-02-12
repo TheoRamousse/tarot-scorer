@@ -1,4 +1,4 @@
-﻿function computeChart(titleParam, subtitle, xAxisName, yAxisName, listOfValues, pointStart) {
+﻿function computeChart(titleParam, subtitle, xAxisName, yAxisName, listOfValues, rangeX) {
     Highcharts.chart('container', {
 
         title: {
@@ -19,9 +19,7 @@
             title: {
                 text: xAxisName
             },
-            accessibility: {
-                rangeDescription: 'Range generated automatically with a start value of ' + pointStart
-            }
+            categories: rangeX
         },
 
         legend: {
@@ -33,13 +31,13 @@
         plotOptions: {
             series: {
                 label: {
-                    connectorAllowed: false
+                    connectorAllowed: false,
                 },
-                pointStart: pointStart,
+                cursor: 'pointer',
                 point: {
                     events: {
-                        click: function () {
-                            DotNet.invokeMethodAsync('DynamicGraph', 'OnPointSelected', this.index);
+                        click: function (event) {
+                            DotNet.invokeMethodAsync("APIGateway","OnPointSelected", event.point.index)
                         }
                     }
                 }
@@ -47,6 +45,7 @@
         },
 
         series: [{
+            name: 'Parties',
             data: listOfValues
         }],
 

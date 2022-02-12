@@ -1,5 +1,6 @@
 ﻿using APIGateway.Entity;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,33 +12,27 @@ namespace APIGateway.Model.Persistence
 {
     public class StubService : IDataService
     {
+        private HttpClient Http { get; set; }
 
-        [Inject]
-        public HttpClient Http { get; set; }
+        private List<PlayerFullEntity> PlayerFullEntities { get; set; } = new List<PlayerFullEntity>();
+        private bool IsDataInitialized = false;
 
-        private PlayerEntity[] jsonDeserializePlayer;
-        private GameEntity[] jsonDeserializeGame;
-
-        public StubService()
+        public StubService(HttpClient Http)
         {
+            this.Http = Http;
         }
 
-        private async Task initJson()
+        private async Task initData()
         {
-            if (jsonDeserializeGame == null || jsonDeserializePlayer == null)
+            if (!IsDataInitialized)
             {
-                jsonDeserializePlayer = await Http.GetFromJsonAsync<PlayerEntity[]>("sample-data/player.json");
-                jsonDeserializeGame = await Http.GetFromJsonAsync<GameEntity[]>("sample-data/game.json");
-            }
-        }
+                IsDataInitialized = true;
+                var jsonDeserializePlayer = await Http.GetFromJsonAsync<PlayerEntity[]>("sample-data/player.json");
+                var jsonDeserializeGame = await Http.GetFromJsonAsync<GameEntity[]>("sample-data/game.json");
 
-        public async Task<PlayerFullEntity> GetPlayerById(long id)
-        {
-            await initJson();
 
-            foreach (var element in jsonDeserializePlayer)
-            {
-                if (element.Id == id)
+                int i = 0;
+                foreach (var element in jsonDeserializePlayer)
                 {
                     List<GameEntity> lesGames = new List<GameEntity>();
                     PlayerFullEntity playerFullEntity = new PlayerFullEntity()
@@ -56,7 +51,23 @@ namespace APIGateway.Model.Persistence
                         }
                     }
                     playerFullEntity.Games = lesGames.ToArray();
-                    return playerFullEntity;
+                    PlayerFullEntities.Add(playerFullEntity);
+                    i++;
+                }
+
+
+            }
+        }
+
+        public async Task<PlayerFullEntity> GetPlayerById(long id)
+        {
+            await initData();
+
+            foreach (var element in PlayerFullEntities)
+            {
+                if(element.Id == id)
+                {
+                    return element;
                 }
             }
 
@@ -65,39 +76,15 @@ namespace APIGateway.Model.Persistence
 
         public async Task<PlayerFullEntity[]> GetPlayers(int numberOfElements, int page)
         {
-            PlayerFullEntity[] result = new PlayerFullEntity[numberOfElements];
-            await initJson();
+            await initData();
 
-            int i = 0;
-            foreach (var element in jsonDeserializePlayer.Skip(page * numberOfElements).Take(numberOfElements))
-            {
-                List<GameEntity> lesGames = new List<GameEntity>();
-                PlayerFullEntity playerFullEntity = new PlayerFullEntity()
-                {
-                    Id=element.Id,
-                    FirstName = element.FirstName,
-                    LastName = element.LastName,
-                    NickName = element.NickName,
-                };
-                foreach (var e in element.ListeDesParties)
-                {
-                    foreach (var elem in jsonDeserializeGame)
-                    {
-                        if (e.Id == elem.Id)
-                            lesGames.Add(elem);
-                    }
-                }
-                playerFullEntity.Games = lesGames.ToArray();
-                result[i] = playerFullEntity;
-                i++;
-            }
-
-            return result;
+            
+            return PlayerFullEntities.Skip(page * numberOfElements).Take(numberOfElements).ToArray();
         }
 
-        public Task UpdatePlayer(PlayerFullEntity p)
+        public async Task UpdatePlayer(PlayerFullEntity p)
         {
-            throw new NotImplementedException();
+            PlayerFullEntities[p.Id] = p;
         }
     }
 }
