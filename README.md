@@ -264,14 +264,14 @@ Voici les **packages nugets** installés et leur version pour chaque solution du
 ***
 
 
-**AutoMapper**: c'est une petite bibliothèque simple conçue pour résoudre un problème d'une complexité trompeuse, il permet de se débarrasser du code qui mappait un objet à un autre.
-
-**GraphQL**: c'est une bibliothèque qui permet de réaliser les requêtes personnalisées.
-
-**GraphQL.Server.Ui.Playground**: c'est ce qui permet de réaliser le lien entre notre application et le site web préciser dans les tests GraphQL.
-
-**HotChocolate.AspNetCore**:c'est une plate-forme GraphQL qui peut nous aider à créer une couche GraphQL sur votre infrastructure existante
-
+•	**AutoMapper**: c'est une petite bibliothèque simple conçue pour résoudre un problème d'une complexité trompeuse, il permet de se débarrasser du code qui mappait un objet à un autre.
+***
+•	**GraphQL**: c'est une bibliothèque qui permet de réaliser les requêtes personnalisées.
+***
+•	**GraphQL.Server.Ui.Playground**: c'est ce qui permet de réaliser le lien entre notre application et le site web préciser dans les tests GraphQL.
+***
+•	**HotChocolate.AspNetCore**:c'est une plate-forme GraphQL qui peut nous aider à créer une couche GraphQL sur votre infrastructure existante
+***
 # Participation
 Pour le projet le groupe s'est séparé en 2 sous-groupes, Théo et Mathieu sur le coté GraphQL et Raphaël et Maël sur l'API REST et gateway.
 Les commits peuvent donc être différents sur les membres du groupe car le travail s'est souvent effectué sur un PC après la mise en commun (une seule personne commit le travail de 2).
