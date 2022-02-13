@@ -1,0 +1,43 @@
+﻿@page "/editdata/{Id:long}"
+@page "/editdata"
+
+@if (CurrentPlayer != null)
+{
+    <div class="card m-3">
+        <div class="card-body">
+            @if(Id != 0){
+                <h4 class="card-title p-2">Modification du joueur n°@(Id) :</h4>
+            }
+            else
+            {
+                <h4 class="card-title p-2">Ajout d'un nouveau joueur' :</h4>
+            }
+            <div class="d-grid gap-3 p-2 m-2">
+                <div>
+                    <div >Nom:</div>
+                    <input @bind="CurrentPlayer.LastName" class="form-control" />
+                </div>
+                <div>
+                    <div >Prénom:</div>
+                    <input @bind="CurrentPlayer.FirstName" class="form-control" />
+                </div>
+                <div>
+                    <div >Pseudo:</div>
+                    <input @bind="CurrentPlayer.NickName" class="form-control" />
+                </div>
+            </div>
+
+            <button @onclick="SavePlayer" class="btn btn-primary mt-3">Valider</button>
+            <a href="/" class="btn btn-danger float-right mt-3">Annuler</a>
+        </div>
+
+
+    </div>
+}
+else
+{
+    <h2>Une erreur s'est produite, appuyez sur le bouton pour retourner sur la page principale : </h2>
+    <div style="width:100%; text-align:center;">
+        <a style="margin:auto; text-align:center;" href="/" class="btn btn-primary">Accueil</a>
+    </div>
+}
