@@ -360,6 +360,12 @@ Pour le client Blazor, nous avons implémenté tout ce que nous souhaitions.
 Malheureusement, **nous avons pris beaucoup de retard sur l’API REST**, nous n’avons donc pas de liaison avec celle-ci et nous utilisons un STUB à la place, ce **STUB** récupère les données au format **JSON**.
 Nous avons tout de même pensé l’architecture afin d’implémenter facilement la liaison avec l’API. Pour cela, il suffira de créer une nouvelle classe qui implémente l’interface « **IDataService** » et de changer StubService par cette nouvelle classe dans le « **Program.cs** ».
 
+Voici le schéma explicatif de la persistance : 
+<br/>
+![Image text](/Documentation/doc_images/Blazor/schema.png "Graphique déplié") 
+<br/>
+
+
 
 
 # Participation
