@@ -3,6 +3,8 @@
 @inject NavigationManager Navigator
 
 
+<a style="float:right;" class="btn btn-primary" href="@(Navigator.BaseUri + OnEdit)">Ajouter un joueur</a>
+<br /><br />
 @if (Elements.Count != 0)
 {
     <table class="table">
@@ -73,7 +75,7 @@
                                 }
                                 @if (IsDeletable)
                                 {
-                                    <button style="margin-left: 3rem;" type="button" class="btn btn-danger">
+                                    <button @onclick="@(e => {Delete((int) element["Id"]); DeleteLocal((int) element["Id"]); StateHasChanged();})" style="margin-left: 3rem;" type="button" class="btn btn-danger">
                                         Supprimer
                                     </button>
                                 }
