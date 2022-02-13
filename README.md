@@ -280,59 +280,61 @@ Voici les **packages nugets** installés et leur version pour chaque solution du
 Le nom du projet Blazor est « APIGateway », nous avons essayé de le changer mais cela faisait crash toute l’application. Nous avons donc laissé ce nom par défaut.
 
 Le but de ce client Razor est de manipuler les informations sur les différents joueurs de Tarot avec toutes les opérations CRUD classiques : 
--	Ajout d’un joueur
--	Supppression d’un joueur
--	Modification du nom/prénom/pseudo du joueur
--	Listing de tous les joueurs de l’application
-Lorsque l’on arrive sur la page principale de l’application, un tableau apparaît avec tous les joueurs de l’application. Ce tableau à la particularité d’être entièrement dynamique et paramétrable ce qui signifie que vous pouvez le récupérer en l’état et l’utiliser dans une autre application (nous autorisons le vol du composant à condition d’être cité dans la page 😉 ). Son fonctionnement est détaillé par la suite.
-Sur ce composant tableau, plusieurs opérations sont possibles : 
--	La suppression d’un joueur lors d’un appuie sur le bouton « Supprimer »
--	La modification d’un joueur lors d’un appuie sur le bouton « Editer », ce bouton vous redirigera sur une autre page de formulaire et vous pourrez modifier les informations du joueur
--	La consultation des parties d’un joueur au cours du temps détaillé par la suite.
--	L’ajout d’un nouveau joueur avec le bouton situé en haut à droite du tableau, vous serez alors redirigé sur la même page que pour modifier un joueur
+-	**Ajout d’un joueur**
+-	**Supppression d’un joueur**
+-	**Modification du nom/prénom/pseudo du joueur**
+-	**Listing de tous les joueurs de l’application**
 
-Ajout d'un joueur :
+Lorsque l’on arrive sur la page principale de l’application, un tableau apparaît avec tous les joueurs de l’application. Ce tableau à la particularité d’être entièrement dynamique et paramétrable ce qui signifie que vous pouvez le récupérer en l’état et l’utiliser dans une autre application (nous autorisons le vol du composant à condition d’être cité dans la page 😉 ). Son fonctionnement est détaillé par la suite.
+
+Sur ce composant tableau, plusieurs opérations sont possibles : 
+-	**La suppression d’un joueur** lors d’un appuie sur le bouton « Supprimer »
+-	**La modification d’un joueur** lors d’un appuie sur le bouton « Editer », ce bouton vous redirigera sur une autre page de formulaire et vous pourrez modifier les informations du joueur
+-	**La consultation des parties d’un joueur** au cours du temps détaillé par la suite.
+-	**L’ajout d’un nouveau joueur** avec le bouton situé en haut à droite du tableau, vous serez alors redirigé sur la même page que pour modifier un joueur
+
+**Ajout d'un joueur :**
 <br/>
 ![Image text](/Documentation/doc_images/Blazor/ajout.png "Ajout d'un joueur")  
 <br/>
-Modification d'un joueur :
+**Modification d'un joueur :**
 <br/>
 ![Image text](/Documentation/doc_images/Blazor/edit.png "Modification d'un joueur")  
 <br/>
 
-Comme dit précédemment, l’utilisateur du site peut consulter les parties des différentes joueurs. La page permettant de réaliser cette action contient un graphe qui affiche pour chaque partie le score du preneur. Si vous cliquez sur une partie, vous aurez les informations associées à celle-ci qui apparaîtront en-dessous. Pour réaliser ce graphique, nous avons utilisé HighCharts qui permet de créer un graphique facilement grâce à du code javascript. La conception du composant est détaillée plus bas.
+Comme dit précédemment, l’utilisateur du site peut consulter les parties des différentes joueurs. La page permettant de réaliser cette action contient un graphe qui affiche pour chaque partie le score du preneur. Si vous cliquez sur une partie, vous aurez les informations associées à celle-ci qui apparaîtront en-dessous. Pour réaliser ce graphique, nous avons utilisé **HighChart** qui permet de créer un graphique facilement grâce à du code javascript. La conception du composant est détaillée plus bas.
 
 ## Composant tableau "DynamicTable"
 
 Ce composant a été fait-maison sans l’aide d’un tuto ou autre. Pour le réaliser, nous avons créé un composant Blazor en HTML, CSS et Bootstrap. Le code-behind du composant a été réalisé en C# Blazor.
 
 Le composants attends de nombreux paramètres lors de sa création : 
--	IsViewable (Booléen) : Défini l’affichage ou non du bouton « Voir »
--	IsEditable (Booléen) : Défini l’affichage ou non du bouton « Editer »
--	IsDeletable (Booléen) : Défini l’affichage ou non du bouton « Supprimer »
--	OnView (String) : Lors du clique sur le bouton « Voir », l’URL de redirection est baseURL/OnView/idDeL’élément
--	OnEdit (String) : Lors du clique sur le bouton « Editer », l’URL de redirection est baseURL/OnEdit/idDeL’élément
--	Delete (Func<int, Task>) : Méthode passée comme lambda en paramètre qui est appelée lors de l’appuie sur le bouton « Supprimer »
--	GetTotalNumberOfData (Func<Task<int>>) : Méthode qui est utilisé par la pagination, elle retourne un Integer correspondant au nombre d’éléments à afficher
--	NumberElementsPerPage (Integer) : Correspond au nombre d’éléments à afficher par page
--	FetchDataWithNumberOfElementsAsync (Func<int, int, Task<List<Data>>>) : Méthode retournant la donnée consommée par notre composant. Attends 2 Integers en paramètre qui correspondent à la page souhaitée et au nombre d’éléments par page. Elle retourne une liste de Data.
+-	**IsViewable (Booléen) :** Défini l’affichage ou non du bouton « Voir »
+-	**IsEditable (Booléen) :** Défini l’affichage ou non du bouton « Editer »
+-	**IsDeletable (Booléen) :** Défini l’affichage ou non du bouton « Supprimer »
+-	**OnView (String) :** Lors du clique sur le bouton « Voir », l’URL de redirection est baseURL/OnView/idDeL’élément
+-	**OnEdit (String) :** Lors du clique sur le bouton « Editer », l’URL de redirection est baseURL/OnEdit/idDeL’élément
+-	**Delete (Func<int, Task>) :** Méthode passée comme lambda en paramètre qui est appelée lors de l’appuie sur le bouton « Supprimer »
+-	**GetTotalNumberOfData (Func<Task<int>>) :** Méthode qui est utilisé par la pagination, elle retourne un Integer correspondant au nombre d’éléments à afficher
+-	**NumberElementsPerPage (Integer) :** Correspond au nombre d’éléments à afficher par page
+-	**FetchDataWithNumberOfElementsAsync (Func<int, int, Task<List<Data>>>) :** Méthode retournant la donnée consommée par notre composant. Attends 2 Integers en paramètre qui correspondent à la page souhaitée et au nombre d’éléments par page. Elle retourne une liste de Data.
 <br/>
 ![Image text](/Documentation/doc_images/Blazor/main.png "Tableau des joueurs")  
 <br/>
-Pour réaliser ce composant, vous aurez besoin de la classe Data associée qui n’est ni plus ni moins qu’un alias d’un Dictionary<string, object>
-Les deux seules règles à respecter lors de l’ajout d’une Data est que la Data doit contenir une clé Id.
-Si vous souhaitez passer un champ qui ne doit pas être affiché dans le tableau, ce champ portera la clé « _ignoreThisPartOfDataOrConsequences »
+Pour réaliser ce composant, vous aurez besoin de la classe Data associée qui n’est ni plus ni moins qu’un alias d’un **Dictionary<string, object>**
+Les deux seules règles à respecter lors de l’ajout d’une Data est que la **Data** doit contenir une clé **Id**.
+Si vous souhaitez passer un champ qui ne doit pas être affiché dans le tableau, ce champ portera la clé « **_ignoreThisPartOfDataOrConsequences** »
 
 ## Composant Graphique "CustomChartStatistic"
 
 Ce composant est également légèrement paramétrable mais beaucoup moins que le tableau, il ne pourra pas être repris dans un autre projet sans subir des modifications.
 
 Le composant attend les paramètres suivants :
--	Title (String) : Titre du graphique
--	Subtitle (String) : Sous-titre du graphique
--	YAxisName (String : Label affiché sur l’axe des Y
--	XAxisName (String : Label affiché sur l’axe des X
--	Data (Tableau de GameEntity) : Données consommées par le composant
+-	**Title (String) :** Titre du graphique
+-	**Subtitle (String) :** Sous-titre du graphique
+-	**YAxisName (String :** Label affiché sur l’axe des Y
+-	**XAxisName (String :** Label affiché sur l’axe des X
+-	**Data (Tableau de GameEntity) :** Données consommées par le composant
 
 Le graphique affiche les points du preneur pour chaque partie passée en paramètre, si vous cliquez sur un point du graphique, une card s’affiche en dessous avec les éléments de la partie sélectionnée : 
 -	PetitResult
@@ -355,8 +357,8 @@ Si vous êtes un amateur de Tarot, ces éléments doivent vous parler. Personnel
 ## Etat d’avancé du projet
 
 Pour le client Blazor, nous avons implémenté tout ce que nous souhaitions.
-Malheureusement, nous avons pris beaucoup de retard sur l’API REST, nous n’avons donc pas de liaison avec celle-ci et nous utilisons un STUB à la place, ce STUB récupère les données au format JSON.
-Nous avons tout de même pensé l’architecture afin d’implémenter facilement la liaison avec l’API. Pour cela, il suffira de créer une nouvelle classe qui implémente l’interface « IDataService » et de changer StubService par cette nouvelle classe dans le « Program.cs ».
+Malheureusement, **nous avons pris beaucoup de retard sur l’API REST**, nous n’avons donc pas de liaison avec celle-ci et nous utilisons un STUB à la place, ce **STUB** récupère les données au format **JSON**.
+Nous avons tout de même pensé l’architecture afin d’implémenter facilement la liaison avec l’API. Pour cela, il suffira de créer une nouvelle classe qui implémente l’interface « **IDataService** » et de changer StubService par cette nouvelle classe dans le « **Program.cs** ».
 
 
 
