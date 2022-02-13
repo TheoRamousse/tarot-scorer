@@ -143,6 +143,9 @@ La documentation à été répartie dans l'ensemble du groupe de manière plutô
 
 [Test](https://gitlab.iut-clermont.uca.fr/mabouvard2/tarot-scorer/-/wikis/Running-the-tests)
 
+[Schéma et description de l'architecture globale de l'application](https://gitlab.iut-clermont.uca.fr/mabouvard2/tarot-scorer/-/wikis/Sch%C3%A9ma-et-description-de-l'architecture-globale-de-l'application)
+
+[Api Gateway](https://gitlab.iut-clermont.uca.fr/mabouvard2/tarot-scorer/-/wikis/Api-Gateway)
 
 # Authors
 Maël Bouvard
