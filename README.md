@@ -135,10 +135,14 @@ La documentation à été répartie dans l'ensemble du groupe de manière plutô
 
 #Wiki
 
-[Link Text](https://gitlab.iut-clermont.uca.fr/mabouvard2/tarot-scorer/-/wikis/Usage)
-[Link Text](https://gitlab.iut-clermont.uca.fr/mabouvard2/tarot-scorer/-/wikis/Blazor)
-[Link Text](https://gitlab.iut-clermont.uca.fr/mabouvard2/tarot-scorer/-/wikis/Description-des-choix-des-2-types-d'API)
-[Link Text](https://gitlab.iut-clermont.uca.fr/mabouvard2/tarot-scorer/-/wikis/Running-the-tests)
+[Usage](https://gitlab.iut-clermont.uca.fr/mabouvard2/tarot-scorer/-/wikis/Usage)
+
+[Blazor](https://gitlab.iut-clermont.uca.fr/mabouvard2/tarot-scorer/-/wikis/Blazor)
+
+[Choix API](https://gitlab.iut-clermont.uca.fr/mabouvard2/tarot-scorer/-/wikis/Description-des-choix-des-2-types-d'API)
+
+[Test](https://gitlab.iut-clermont.uca.fr/mabouvard2/tarot-scorer/-/wikis/Running-the-tests)
+
 
 # Authors
 Maël Bouvard
