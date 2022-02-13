@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestApi", "RestApi\RestApi.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelRestApiClient", "ModelRestApiClient\ModelRestApiClient.csproj", "{00BF046A-01E8-4846-A68E-9FE351CE37F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIGateway", "APIGateway\APIGateway.csproj", "{1CDAACD7-6C69-4A9C-8E13-71F16DCEF40A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway", "APIGateway\APIGateway.csproj", "{1CDAACD7-6C69-4A9C-8E13-71F16DCEF40A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{FB8555EF-A943-480C-A215-3FF66D117570}"
 EndProject
@@ -175,8 +175,8 @@ EndGlobal
 =======
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.810.13
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{5C17E401-AA29-4F35-A0F6-0D65E2190C76}"
 EndProject
@@ -315,4 +315,4 @@ Global
 		SolutionGuid = {C363D11C-615A-49A5-B70B-99120736E341}
 	EndGlobalSection
 EndGlobal
->>>>>>> 2828cf3 (Added blazor project)
+>>>>>>> 3db0047 (Finished Blazor Client)

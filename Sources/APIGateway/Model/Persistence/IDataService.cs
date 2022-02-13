@@ -9,5 +9,11 @@ namespace APIGateway.Model
         public Task<PlayerFullEntity[]> GetPlayers(int numberOfElements, int page);
 
         public Task UpdatePlayer(PlayerFullEntity p);
+
+        public Task DeletePlayer(int id);
+
+        public Task AddPlayer(PlayerFullEntity p);
+
+        public Task<int> GetNumberOfData();
     }
 }

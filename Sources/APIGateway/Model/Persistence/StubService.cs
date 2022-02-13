@@ -84,7 +84,44 @@ namespace APIGateway.Model.Persistence
 
         public async Task UpdatePlayer(PlayerFullEntity p)
         {
-            PlayerFullEntities[p.Id] = p;
+            PlayerFullEntity playerToModify = PlayerFullEntities.Find(player => player.Id == p.Id);
+            playerToModify.FirstName = p.FirstName;
+            playerToModify.LastName = p.LastName;
+            playerToModify.NickName = p.NickName;
+        }
+
+        public async Task DeletePlayer(int id)
+        {
+            await initData();
+
+            PlayerFullEntities.RemoveAll(player => player.Id == id);
+        }
+
+        public async Task AddPlayer(PlayerFullEntity p)
+        {
+            await initData();
+
+            p.Id = GetNewId();
+            PlayerFullEntities.Add(p);
+        }
+
+        private int GetNewId()
+        {
+
+            int maxId = 0;
+
+            PlayerFullEntities.ForEach(player =>
+            {
+                if (player.Id > maxId)
+                    maxId = player.Id;
+            });
+
+            return maxId+1;
+        }
+
+        public async Task<int> GetNumberOfData()
+        {
+            return PlayerFullEntities.Count();
         }
     }
 }

@@ -29,6 +29,9 @@ namespace APIGateway.Shared
         [Parameter]
         public Func<Task<int>> GetTotalNumberOfData { get; set; }
 
+        [Parameter]
+        public Func<int, Task> Delete { get; set; }
+
 
 
         public decimal NumberOfData { get; set; }
@@ -74,6 +77,12 @@ namespace APIGateway.Shared
                 await setData();
             }
         }
+
+        public void DeleteLocal(int id)
+        {
+            Elements.RemoveAll(el => (int)el["Id"] == id);
+        }
+
 
     }
 }
