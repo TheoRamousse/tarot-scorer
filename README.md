@@ -133,7 +133,7 @@ Pour le projet le groupe s'est séparé en 2 sous-groupes, Théo et Mathieu sur 
 Les commits peuvent donc être différents sur les membres du groupe car le travail s'est souvent effectué sur un PC après la mise en commun (une seule personne commit le travail de 2).
 La documentation à été répartie dans l'ensemble du groupe de manière plutôt égale.
 
-#Wiki
+# Wiki
 
 [Usage](https://gitlab.iut-clermont.uca.fr/mabouvard2/tarot-scorer/-/wikis/Usage)
 
