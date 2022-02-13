@@ -3,6 +3,8 @@
 @inject NavigationManager Navigator
 
 
+<a style="float:right;" class="btn btn-primary" href="@(Navigator.BaseUri + OnEdit)">Ajouter un joueur</a>
+<br /><br />
 @if (Elements.Count != 0)
 {
     <table class="table">
@@ -35,18 +37,6 @@
                     {
                         @if (@property.Key != "_ignoreThisPartOfDataOrConsequences")
                         {
-<<<<<<< HEAD
-                            <td>
-                                @property.Value
-                            </td>
-                        }
-                        else
-                        {
-                            <td>
-                                <input type="checkbox" checked="@property.Value" disabled="true" />
-                            </td>
-                        }
-=======
                             @if (!(property.Value is Boolean))
                             {
                                 <td>
@@ -60,7 +50,6 @@
                                 </td>
                             }
                          }
->>>>>>> 3203e54 (Finished data deserialize for array)
 
                      }
                     @if (IsEditable || IsViewable || IsDeletable)
@@ -69,7 +58,7 @@
                             <div style="float:right;">
                                 @if (IsViewable)
                                 {
-                                    <a href="@(Navigator.BaseUri + OnView + "/" + element.ToArray()[2].Value)">
+                                    <a href="@(Navigator.BaseUri + OnView + "/" + element["Id"].ToString())">
                                         <button type="button" class="btn btn-info" style="margin-left: 3rem;">
                                             Voir
                                         </button>
@@ -77,7 +66,7 @@
                                 }
                                 @if (IsEditable)
                                 {
-                                    <a href="@(Navigator.BaseUri + OnEdit + "/" + element.ToArray()[2].Value)">
+                                    <a href="@(Navigator.BaseUri + OnEdit + "/" + element["Id"].ToString())">
                                         <button type="button" class="btn btn-warning" style="margin-left: 3rem;">
                                             Editer
                                         </button>
@@ -86,7 +75,7 @@
                                 }
                                 @if (IsDeletable)
                                 {
-                                    <button style="margin-left: 3rem;" type="button" class="btn btn-danger">
+                                    <button @onclick="@(e => {Delete((int) element["Id"]); DeleteLocal((int) element["Id"]); StateHasChanged();})" style="margin-left: 3rem;" type="button" class="btn btn-danger">
                                         Supprimer
                                     </button>
                                 }

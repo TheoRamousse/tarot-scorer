@@ -1,0 +1,52 @@
+﻿<figure class="highcharts-figure">
+    <div id="container"></div>
+</figure>
+
+@if (SelectedGame != null)
+{
+    <div class="card m-3">
+        <div class="card-header">
+            <h4>Détails de la partie n°@(SelectedGame.Id) : </h4>
+            <p>Le @(SelectedGame.Date.ToString()) </p>
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-4">
+                    <label>Petit résultat</label>
+                    <input style="pointer-events: none;" class="form-control" value="@(SelectedGame.PetitResult)" />
+                </div>
+                <div class="form-group col-4">
+                    <label>Poignée</label>
+                    <input style="pointer-events: none;" value="@(SelectedGame.Poignée)" class="form-control" />
+                </div>
+                <div class="form-group col-4">
+                    <label>Chelem</label>
+                    <input style="pointer-events: none;" value="@(SelectedGame.Chelem)" class="form-control" />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-6">
+                    <label>Points réalisés par le preneur</label>
+                    <input style="pointer-events: none;" value="@(SelectedGame.TakerPoints)" class="form-control" />
+                </div>
+                <div class="form-group col-6">
+                    <label>Nombre de joueurs</label>
+                    <input style="pointer-events: none;" value="@(SelectedGame.NbPlayers)" class="form-control" />
+                </div>
+            </div>
+            <div class="form-check">
+                <input id="checkbox-21" class="form-check-input" style="pointer-events: none;" checked="@(SelectedGame.TwentyOne)" type="checkbox" />
+                <label class="form-check-label" for="checkbox-21">
+                    Y'a-t-il eu un 21 dans la partie ?
+                </label>
+            </div>
+            <div class="form-check">
+                <input style="pointer-events: none;" checked="@(SelectedGame.Excuse)" id="checkbox-excuse" class="form-check-input" type="checkbox" />
+                <label class="form-check-label" for="checkbox-excuse">
+                    Est-ce-que le preneur a terminé la partie avec une excuse ?
+                </label>
+            </div>
+        </div>
+    </div>
+}
+
